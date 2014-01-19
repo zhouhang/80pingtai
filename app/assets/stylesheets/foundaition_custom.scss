@@ -1,9 +1,9 @@
 @import "foundation";
 
-//.row {min-width:90% !important; }
+.row {min-width:90% !important; }
 .error {
   @include alert(
 //  border-color: #bb1c14;
-    $bg: #e7251b
+    $bg: #ffffff
   );
 }
