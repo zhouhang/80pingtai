@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title><%=t 'project'%></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<nav class="top-bar hide-for-small" data-topbar="">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/"><%=t 'project'%></a></h1>
+    </li>
+  </ul>
+
+
+  <section class="top-bar-section">
+    <ul class="right">
+      <li class="has-form">
+        <a href="/docs" class="small button"><%= t 'layouts.header.signin'%></a>
+      </li>
+    </ul>
+  </section>
+</nav>
+
+<section id="main-content">
+  <div class="row">
+    <div class="small-6 small-centered columns">
+      <%= yield %>
+    </div>
+  </div>
+</section>
+<div class="main-footer">
+    <div class="row">
+        <p>&copy; Company 2014</p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+.sidebar{
+  .side-nav {
+    background: none repeat scroll 0% 0% #FAFAFA;
+    padding: 32px 20px;
+    line-height: 2.6;
+
+    .heading{
+      color: #FFFFFF;
+      background-color:  #008fba;;
+      position: relative;
+      margin: 0 -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      font-weight: bold;
+    }
+
+    li{
+    }
+
+    li.active > a:first-child {
+      position: relative;
+      margin: 0 -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      font-weight: bold;
+      color: #008fba;
+      background: rgba(0, 64, 84, 0.05);
+    }
+
+
+    li:hover > a:first-child {
+      position: relative;
+      margin: 0 -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      font-weight: bold;
+      color: #006887;
+      background: rgba(0, 64, 84, 0.03);
+    }
+
+  }
+}

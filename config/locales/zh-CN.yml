@@ -1,0 +1,33 @@
+zh-CN:
+  en: "英文"
+  zh-CN: "简体中文"
+  project: "80平台"
+
+  layouts:
+    header:
+      signup: "注册"
+      signin: "登录"
+
+  activerecord:
+    models:
+      user: 用户
+    attributes:
+      user:
+        name: "用户名"
+        email: "邮箱"
+        password: "密码"
+        password_confirmation: '确认密码'
+    errors:
+      messages:
+        invalid:  "无效"
+        blank:  "不能为空"
+        too_short: "太短"
+        confirmation: "两次输入不匹配"
+
+
+  errors:
+    messages:
+      blank: "不能为空"
+      is_not_match: "不正确"
+      space_name: "只能包含小写英文字母，数字和 - 符号"
+      wrong_name_or_password: "错误的用户名或密码"

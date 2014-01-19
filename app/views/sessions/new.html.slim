@@ -1,0 +1,10 @@
+.centered
+  h2 = t 'layouts.header.signin'
+  - if flash[:error]
+    <div data-alert class="alert-box alert radius">
+      = flash[:error]
+    </div>
+  = simple_form_for :session,url:sessions_path do |f|
+      =f.input :name,label:'用户名'
+      =f.input :password,label:'密码'
+      =f.button :submit, t('layouts.header.signin')
