@@ -2,7 +2,7 @@ class Admin::ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   helper_method :logined?, :current_admin
-  layout 'home'
+  layout 'admin'
 
 
   def logined?
