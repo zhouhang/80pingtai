@@ -53,6 +53,14 @@ Sample::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  namespace :admin do
+    resources :sessions, only: [:new, :create, :destroy]
+    match '/signin',  to: 'sessions#new',:via => [:get,:post]
+    match '/signout', to: 'sessions#destroy', :via =>[:delete,:get]
+    root :to => 'home#index'
+  end
+
   resources :users#, :only => [:create]
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new',:via => [:get]

@@ -5,6 +5,7 @@ class User < ActiveRecord::Migration
       t.string :password
       t.string :password_digest
       t.string :email
+      t.string :role
 
       t.timestamps
     end

@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
     (user && user.remember_token == token) ? user : nil
   end
 
+  def is_admin?
+    return self.role == 'admin'
+  end
+
 end

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20140114162846) do
     t.string   "password"
     t.string   "password_digest"
     t.string   "email"
+    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
