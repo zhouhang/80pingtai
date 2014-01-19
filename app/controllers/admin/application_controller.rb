@@ -6,7 +6,7 @@ class Admin::ApplicationController < ActionController::Base
 
 
   def logined?
-    !!current_admin
+    current_admin.present? && current_admin.is_admin?
   end
 
   def login_as(user)
