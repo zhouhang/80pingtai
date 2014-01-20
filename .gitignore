@@ -4,3 +4,4 @@
 /tmp
 .idea/
 .swp
+/config/database.yml
