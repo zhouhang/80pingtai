@@ -2,11 +2,11 @@ class Admin::ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   helper_method :logined?, :current_admin
-  layout 'home'
+  layout 'admin'
 
 
   def logined?
-    !!current_admin
+    current_admin.present? && current_admin.is_admin?
   end
 
   def login_as(user)

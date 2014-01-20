@@ -1,7 +1,7 @@
 module SessionsHelper
 
   def logined?
-    !!current_user
+    current_user.present? && !current_user.is_admin?
   end
 
   def login_as(user)
