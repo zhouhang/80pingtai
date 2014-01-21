@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_no_logined
+  before_filter :require_no_logined, :only => [:new,:create]
 
   def new
     @user = User.new :password => 1
@@ -15,6 +15,27 @@ class UsersController < ApplicationController
     else
       render action: "new"
     end
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = User.find(session[:user_id])
+    password_old = params.require(:user).permit(:password_old)
+    if !@user || !@user.authenticate(params[:user][:password_old])
+      flash.now[:error] = t 'errors.messages.wrong_name_or_password'
+      render action: 'edit_password'
+    end
+    if params[:user][:password_old] != params[:user][:password_confirmation]
+      flash.now[:error] = t 'errors.messages.wrong_name_or_password'
+      render action: 'edit_password'
+    end
+
+    #if @user.update()
+
+    redirect_to root_url
   end
 
   private

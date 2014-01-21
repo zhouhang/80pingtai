@@ -1,0 +1,7 @@
+.centered
+  h2 = t 'layouts.header.changepwd'
+  = simple_form_for @user do |f|
+      =f.input :password_old
+      =f.input :password_new
+      =f.input :password_confirmation,required: true
+      =f.button :submit, t('layouts.header.submit')

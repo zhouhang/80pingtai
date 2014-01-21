@@ -4,5 +4,9 @@
 /tmp
 .idea/
 .swp
+<<<<<<< HEAD
+config/database.yml
+=======
 /config/database.yml
 Gemfile
+>>>>>>> f2be38f03c3c701cacc200217fa9c469fa1f28dc
