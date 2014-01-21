@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   #attr_accessible :name, :email, :password, :password_confirmation
 
   attr_accessor :password_confirmation, :password_old
+  attr_accessor :business_password_confirmation, :business_password_old
 
   has_secure_password
 

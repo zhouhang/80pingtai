@@ -7,8 +7,9 @@ zh-CN:
     header:
       signup: "注册"
       signin: "登录"
-      changepwd: "修改密码"
+      changepwd: "修改登陆密码"
       submit: "提交"
+      changebusinesspwd: "修改交易密码"
 
   activerecord:
     models:
@@ -22,6 +23,9 @@ zh-CN:
         password_confirmation: '确认密码'
         password_old: '旧密码'
         password_new: '新密码'
+        business_password_old: "旧交易密码"
+        business_password: "交易密码"
+        business_password_confirmation: "确认交易密码"
       charge:
         total: "金额"
         total_confirmation: '确认金额'
@@ -44,3 +48,6 @@ zh-CN:
       wrong_old_password: "错误的密码"
       new_password_not_equal_confirm: "两次输入的密码不一致"
       change_password_fail: "修改密码失败，请稍后再试"
+      wrong_old_business_password: "错误的交易密码"
+      new_business_password_not_equal_confirm: "两次输入的交易密码不一致"
+      change_business_password_fail: "修改交易密码失败，请稍后再试"

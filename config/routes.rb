@@ -68,4 +68,6 @@ Sample::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', :via =>[:delete,:get]
   root  'home#index'
 
+  match '/users/update_business_password', to: 'users#update_business_password', :via =>[:post]
+
 end
