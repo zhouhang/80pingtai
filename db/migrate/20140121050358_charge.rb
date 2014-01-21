@@ -4,6 +4,7 @@ class Charge < ActiveRecord::Migration
       t.float    :total
       t.text     :desc
       t.string   :pay_method
+      t.references :user
 
       t.timestamps
     end

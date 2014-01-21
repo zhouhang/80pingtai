@@ -8,6 +8,7 @@ class ChargesController < ApplicationController
 
   def create
     @charge = Charge.new charge_params
+    @charge.user= current_user
     if @charge.save
       redirect_to @charge
     else
@@ -20,7 +21,7 @@ class ChargesController < ApplicationController
   end
 
   def update
-    @charge = User.find(params[:id])
+    @charge = Charge.find(params[:id])
     if @charge.update_attributes(params[:post])
       redirect_to @charge
     else
@@ -31,7 +32,7 @@ class ChargesController < ApplicationController
   private
 
   def charge_params
-    params.require(:charge).permit(:total,:total_confirmation)
+    params.require(:charge).permit(:total,:total_confirmation,:desc)
   end
 
 

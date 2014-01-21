@@ -7,7 +7,7 @@
     <ul class="side-nav">
       <li class="heading">缴费业务</li>
       <li class="divider"></li>
-      <li class="active"><a href="#" data-search>话费缴费</a></li>
+      <li><a href="#" data-search>话费缴费</a></li>
       <li><a href="#">话费缴费历史查询</a></li>
       <li><a href="#">Q币业务</a></li>
       <li><a href="#">游戏业务</a></li>
@@ -15,9 +15,8 @@
 
       <li class="heading">我的账户</li>
       <li class="divider"></li>
-      <li>
-        <%= link_to "存款提交", new_charge_path, class: "#{cp(new_charge_path)} active" %>
-        <!--<a href="<%=new_charge_path%>"></a>-->
+      <li class="<%="#{cp(new_charge_path)}"%>">
+        <a href="<%=new_charge_path%>">存款提交</a>
       </li>
       <li><a href="#">存款历史记录</a></li>
       <li><a href="#">佣金余额</a></li>
