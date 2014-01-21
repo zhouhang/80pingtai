@@ -35,3 +35,6 @@ zh-CN:
       is_not_match: "不正确"
       space_name: "只能包含小写英文字母，数字和 - 符号"
       wrong_name_or_password: "错误的用户名或密码"
+      wrong_old_password: "错误的密码"
+      new_password_not_equal_confirm: "两次输入的密码不一致"
+      change_password_fail: "修改密码失败，请稍后再试"
