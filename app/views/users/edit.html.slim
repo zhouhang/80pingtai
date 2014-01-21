@@ -6,6 +6,6 @@
       </div>
   = simple_form_for @user do |f|
       =f.input :password_old,required: true
-      =f.input :password_new,required: true
+      =f.input :password,required: true
       =f.input :password_confirmation,required: true
       =f.button :submit, t('layouts.header.submit')

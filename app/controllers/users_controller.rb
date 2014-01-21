@@ -24,32 +24,21 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    unless @user.authenticate(params[:user][:password_old])
-      flash.now[:error] = t 'errors.messages.wrong_old_password'
-      render action: 'edit',layout:'home'
-      return
-    end
-    #if params[:user][:password_new] != params[:user][:password_confirmation]
-    #  flash.now[:error] = t 'errors.messages.new_password_not_equal_confirm'
-    #  render action: 'edit',layout:'home'
-    #  return
-    #end
-
-    @user.password_confirmation = params[:user][:password_confirmation]
-    if @user.update_attributes(:password => params[:user][:password_new])
-      logout
-      redirect_to root_url
+    if current_user.authenticate user_params[:password_old]
+      if @user.update_attributes(user_params)
+        logout
+        redirect_to root_url and return
+      end
     else
-      flash.now[:error] = t 'errors.messages.change_password_fail'
-      render action: 'edit',layout:'home'
+      current_user.errors.add(:password_old, I18n.t("errors.messages.wrong_old_password"))
     end
-
+    render action: 'edit',layout:'home'
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password,:password_old, :password_confirmation)
   end
 
 
