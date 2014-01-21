@@ -13,6 +13,7 @@ zh-CN:
   activerecord:
     models:
       user: 用户
+      charge: 存款
     attributes:
       user:
         name: "用户名"
@@ -21,17 +22,22 @@ zh-CN:
         password_confirmation: '确认密码'
         password_old: '旧密码'
         password_new: '新密码'
+      charge:
+        total: "金额"
+        total_confirmation: '确认金额'
+        desc: '备注'
     errors:
       messages:
         invalid:  "无效"
         blank:  "不能为空"
         too_short: "太短"
         confirmation: "两次输入不匹配"
-
+        greater_than: "必须大于 %{count}"
 
   errors:
     messages:
       blank: "不能为空"
       is_not_match: "不正确"
+      pay_method_invalid: '支付方式无效'
       space_name: "只能包含小写英文字母，数字和 - 符号"
       wrong_name_or_password: "错误的用户名或密码"

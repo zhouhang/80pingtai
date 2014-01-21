@@ -1,0 +1,7 @@
+.centered
+  h2 = '充值'
+  = simple_form_for @charge do |f|
+      = f.input :total
+      = f.input :total_confirmation,required: true
+      = f.input  :desc, as: :text
+      = f.button :submit, '充值'
