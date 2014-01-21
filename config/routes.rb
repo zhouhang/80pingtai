@@ -66,7 +66,9 @@ Sample::Application.routes.draw do
   match '/signup',  to: 'users#new',:via => [:get]
   match '/signin',  to: 'sessions#new',:via => [:get,:post]
   match '/signout', to: 'sessions#destroy', :via =>[:delete,:get]
-  match '/password/edit', to:'home#edit_password',:via=>[:get]
-  match '/password/update', to:'home#update_password',:via=>[:post]
   root  'home#index'
+
+  resources :passwords
+  match '/password/edit', to: 'passwords#edit', :via =>[:get]
+  match '/password/update', to: 'passwords#update', :via =>[:post]
 end
