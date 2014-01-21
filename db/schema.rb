@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20140121050358) do
   create_table "charges", force: true do |t|
     t.float    "total"
     t.text     "desc"
+    t.string   "pay_method"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
