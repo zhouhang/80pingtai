@@ -67,4 +67,5 @@ Sample::Application.routes.draw do
   match '/signin',  to: 'sessions#new',:via => [:get,:post]
   match '/signout', to: 'sessions#destroy', :via =>[:delete,:get]
   root  'home#index'
+
 end
