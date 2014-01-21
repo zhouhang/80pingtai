@@ -75,6 +75,7 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.4)
+    mysql2 (0.3.14)
     polyglot (0.3.3)
     pry (0.9.12.4)
       coderay (~> 1.0)
@@ -135,8 +136,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.8)
-    sqlite3 (1.3.8-x86-mingw32)
     temple (0.6.7)
     thor (0.18.1)
     thread_safe (0.1.3)
@@ -163,6 +162,7 @@ DEPENDENCIES
   foundation-rails
   jbuilder (~> 1.2)
   jquery-rails
+  mysql2
   pry
   pry-debugger
   pry-nav
@@ -172,5 +172,4 @@ DEPENDENCIES
   sdoc
   simple_form
   slim (~> 1.3.8)
-  sqlite3
   uglifier (>= 1.3.0)
