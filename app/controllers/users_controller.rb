@@ -29,12 +29,13 @@ class UsersController < ApplicationController
       render action: 'edit',layout:'home'
       return
     end
-    if params[:user][:password_new] != params[:user][:password_confirmation]
-      flash.now[:error] = t 'errors.messages.new_password_not_equal_confirm'
-      render action: 'edit',layout:'home'
-      return
-    end
+    #if params[:user][:password_new] != params[:user][:password_confirmation]
+    #  flash.now[:error] = t 'errors.messages.new_password_not_equal_confirm'
+    #  render action: 'edit',layout:'home'
+    #  return
+    #end
 
+    @user.password_confirmation = params[:user][:password_confirmation]
     if @user.update_attributes(:password => params[:user][:password_new])
       logout
       redirect_to root_url
