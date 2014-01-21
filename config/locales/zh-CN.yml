@@ -7,6 +7,8 @@ zh-CN:
     header:
       signup: "注册"
       signin: "登录"
+      changepwd: "修改密码"
+      submit: "提交"
 
   activerecord:
     models:
@@ -17,6 +19,8 @@ zh-CN:
         email: "邮箱"
         password: "密码"
         password_confirmation: '确认密码'
+        password_old: '旧密码'
+        password_new: '新密码'
     errors:
       messages:
         invalid:  "无效"
