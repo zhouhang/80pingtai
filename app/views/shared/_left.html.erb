@@ -7,7 +7,7 @@
     <ul class="side-nav">
       <li class="heading">缴费业务</li>
       <li class="divider"></li>
-      <li class="active"><a href="#" data-search>话费缴费</a></li>
+      <li><a href="#" data-search>话费缴费</a></li>
       <li><a href="#">话费缴费历史查询</a></li>
       <li><a href="#">Q币业务</a></li>
       <li><a href="#">游戏业务</a></li>
@@ -15,14 +15,16 @@
 
       <li class="heading">我的账户</li>
       <li class="divider"></li>
-      <li><a href="#">存款提交</a></li>
+      <li class="<%="#{cp(new_charge_path)}"%>">
+        <a href="<%=new_charge_path%>">存款提交</a>
+      </li>
       <li><a href="#">存款历史记录</a></li>
       <li><a href="#">佣金余额</a></li>
       <li><a href="#">我的资金日志</a></li>
 
       <li class="heading">个人管理</li>
       <li class="divider"></li>
-      <li><a href="/password/edit">密码管理</a></li>
+      <li class="<%="#{cp(edit_user_path current_user)}"%>"><a href="<%=edit_user_path current_user%>">密码管理</a></li>
     </ul>
   </nav>
 </div>

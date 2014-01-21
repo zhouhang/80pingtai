@@ -4,5 +4,4 @@
 /tmp
 .idea/
 .swp
-/config/database.yml
-Gemfile
+config/database.yml
