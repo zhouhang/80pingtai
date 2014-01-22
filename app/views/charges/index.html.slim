@@ -1,0 +1,30 @@
+.centered
+  h2 = '存款历史记录'
+  table
+    thead
+      tr
+        th 存款银行
+        th 存款账号
+        th 金额
+        th 手续费
+        th 存款时间
+        th 备注
+        th 状态
+        th 返款信息
+        th 操作
+    tbody
+    - @charges.each do |c|
+      tr
+        td= c.pay_method_display_bank
+        td= c.pay_method_display_account
+        td= c.total
+        td a
+        td= c.created_at
+        td= c.desc
+        td= c.status_display
+        td a
+        -if c.status == 'awaiting'
+          td: a href="#{cancel_charge_path c}" data-remote="true" data-method="post" data-disable-with="操作中..." 主动取消
+        -else
+          td
+  = paginate @charges

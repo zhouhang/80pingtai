@@ -29,6 +29,7 @@ zh-CN:
       charge:
         total: "金额"
         total_confirmation: '确认金额'
+        pay_method: '支付方式'
         desc: '备注'
     errors:
       messages:
@@ -37,6 +38,13 @@ zh-CN:
         too_short: "太短"
         confirmation: "两次输入不匹配"
         greater_than: "必须大于 %{count}"
+  views:
+    pagination:
+      first: "&laquo; 第一页"
+      last: "最后一页 &raquo;"
+      previous: "&lsaquo; 上一页"
+      next: "下一页 &rsaquo;"
+      truncate: "..."
 
   errors:
     messages:

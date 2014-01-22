@@ -61,7 +61,15 @@ Sample::Application.routes.draw do
     root :to => 'home#index'
   end
 
-  resources :users,:charges
+  resources :users
+  resources :charges do
+    member do
+      post :cancel
+    end
+    collection do
+      post 'mcancel'
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new',:via => [:get]
   match '/signin',  to: 'sessions#new',:via => [:get,:post]
