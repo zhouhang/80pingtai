@@ -26,7 +26,7 @@ class Charge < ActiveRecord::Base
       {name:'主动取消',code:'cancelled'}
   ]
 
-  scope :belongs_to_user, ->(u){
+  scope :by_user, ->(u){
     where(["user_id = ?",u.id])
   }
 

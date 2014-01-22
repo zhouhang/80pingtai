@@ -66,9 +66,6 @@ Sample::Application.routes.draw do
     member do
       post :cancel
     end
-    collection do
-      post 'mcancel'
-    end
   end
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new',:via => [:get]

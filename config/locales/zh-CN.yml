@@ -15,9 +15,11 @@ zh-CN:
     models:
       user: 用户
       charge: 存款
+      company: 单位信息
     attributes:
       user:
-        name: "用户名"
+        login: '用户名'
+        name: "真实姓名"
         email: "邮箱"
         password: "密码"
         password_confirmation: '确认密码'
@@ -31,6 +33,12 @@ zh-CN:
         total_confirmation: '确认金额'
         pay_method: '支付方式'
         desc: '备注'
+      company:
+        name: '单位名称'
+        manager: '负责人'
+        cell_phone: '手机号码'
+        telphone: '固定电话'
+        address: '联系地址'
     errors:
       messages:
         invalid:  "无效"

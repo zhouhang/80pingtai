@@ -9,3 +9,5 @@ $(function(){
         alert('操作失败');
     })
 })
+
+//    document.addEventListener("page:fetch", my_ready);

@@ -17,9 +17,22 @@
   /  .form-group
   /      /:class => 'button-green',
   /  = f.submit t('layouts.header.signup'),  :tabindex => 5
-  = simple_form_for @user do |f|
-      =f.input :name
-      =f.input :email
-      =f.input :password
-      =f.input :password_confirmation,required: true
-      =f.button :submit, t('layouts.header.signup')
+  = simple_nested_form_for  @user do |f|
+    h4 账号信息
+    hr
+    =f.input :login
+    =f.input :name
+    =f.input :password
+    =f.input :password_confirmation,required: true
+
+    h4 单位信息
+    hr
+    = f.simple_fields_for :company,@user.company_for_form do |p|
+      =p.input :name
+      =p.input :manager
+      =p.input :cell_phone
+      =p.input :telphone
+      =p.input :address
+
+
+    =f.button :submit, t('layouts.header.signup')

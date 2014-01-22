@@ -27,6 +27,7 @@ gem 'foundation-rails'
 gem 'jquery-rails'
 gem 'slim', '~> 1.3.8'
 gem 'simple_form'
+gem 'nested_form'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 

@@ -5,6 +5,6 @@
       = flash[:error]
     </div>
   = simple_form_for :session,url:sessions_path do |f|
-      =f.input :name,label:'用户名'
+      =f.input :login,label:'用户名'
       =f.input :password,label:'密码'
       =f.button :submit, t('layouts.header.signin')

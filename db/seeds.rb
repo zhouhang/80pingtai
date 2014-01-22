@@ -5,5 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create(name:'test',password:'111111',password_confirmation:'111111',email:'test@pingtai.com')
-User.create(name:'admin',password:'111111',password_confirmation:'111111',email:'admin@pingtai.com',role:'admin')
+User.create!(login:'test',name:'测试1',password:'111111',password_confirmation:'111111',email:'test@pingtai.com')
+User.create!(login:'admin',name:'管理员',password:'111111',password_confirmation:'111111',email:'admin@pingtai.com',role:'admin')

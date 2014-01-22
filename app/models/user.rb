@@ -6,9 +6,11 @@ class User < ActiveRecord::Base
   attr_accessor :business_password_confirmation, :business_password_old
 
   has_secure_password
+  has_one :company#,inverse_of: :user
+  accepts_nested_attributes_for  :company
 
-  validates :name, :presence => true, :uniqueness => {:case_sensitive => false}, :format => {:with => /\A[a-z0-9-]+\z/, :message => I18n.t('errors.messages.space_name') }, :length => {:in => 4..20}
-  validates :email, :presence => true, :uniqueness => {:case_sensitive => false}, :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}
+  validates :name, :presence => true
+  #validates :email, :presence => true, :uniqueness => {:case_sensitive => false}, :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}
   validates :password, :length => { :minimum => 6 }, confirmation: true, :on => :create
   validates :password_confirmation, presence: true
   validates_length_of :password, :minimum => 6
@@ -20,6 +22,11 @@ class User < ActiveRecord::Base
 
   def is_admin?
     return self.role == 'admin'
+  end
+
+
+  def company_for_form
+    company ? company : build_company
   end
 
 end

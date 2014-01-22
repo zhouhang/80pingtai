@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>80平台</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
 
   <%= csrf_meta_tags %>
 </head>
@@ -17,7 +18,7 @@
                 <div class="large-3 medium-4 columns">
                     <%= render :partial => 'shared/left' %>
                 </div>
-                <div class="large-9 medium-8  columns">
+                <div class="large-9 medium-8 small-centered large-centered columns">
                   <%= yield %>
                 </div>
             </div>

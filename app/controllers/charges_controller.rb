@@ -34,10 +34,10 @@ class ChargesController < ApplicationController
   end
 
   def cancel
-    @charge = Charge.belongs_to_user(current_user).find params[:id]
+    @charge = Charge.by_user(current_user).find params[:id]
     @charge.cancel
     respond_with do |format|
-      format.html { redirect_referrer_or_default notifications_path }
+      format.html { redirect_to action:'index' }
       format.js { render :nothing => true, :status => 200, :content_type => 'text/html' }
     end
   end

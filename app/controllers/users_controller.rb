@@ -3,12 +3,15 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new :password => 1
+    #@user.company = @user.build_company
     referrer = request.headers['X-XHR-Referer'] || request.referrer
     store_location referrer if referrer.present?
   end
 
   def create
     @user = User.new user_params
+    #@user.company = Company.new company_params
+    binding.pry
     if @user.save
       login_as @user
       redirect_to root_url
@@ -50,8 +53,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password,:password_old, :password_confirmation, :business_password_confirmation, :business_password_old)
+    params.require(:user).permit(:login,:name, :email, :password,:password_old, :password_confirmation, :business_password_confirmation, :business_password_old,:company_attributes =>[:name, :manager, :cell_phone,:telphone, :address])
   end
-
 
 end
