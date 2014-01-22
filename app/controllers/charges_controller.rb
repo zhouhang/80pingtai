@@ -2,6 +2,10 @@ class ChargesController < ApplicationController
   layout 'home'
   before_filter :require_logined
 
+  def index
+    @charges = Charge.page(params[:page])
+  end
+
   def new
     @charge = Charge.new
   end
@@ -10,7 +14,7 @@ class ChargesController < ApplicationController
     @charge = Charge.new charge_params
     @charge.user= current_user
     if @charge.save
-      redirect_to @charge
+      redirect_to action:'index'
     else
       render action: "new"
     end
@@ -29,10 +33,19 @@ class ChargesController < ApplicationController
     end
   end
 
+  def cancel
+    @charge = Charge.belongs_to_user(current_user).find params[:id]
+    @charge.cancel
+    respond_with do |format|
+      format.html { redirect_referrer_or_default notifications_path }
+      format.js { render :nothing => true, :status => 200, :content_type => 'text/html' }
+    end
+  end
+
   private
 
   def charge_params
-    params.require(:charge).permit(:total,:total_confirmation,:desc)
+    params.require(:charge).permit(:total,:total_confirmation,:desc,:pay_method)
   end
 
 
