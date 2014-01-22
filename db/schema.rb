@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20140122094323) do
     t.string   "cell_phone"
     t.string   "telphone"
     t.string   "address"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,6 +43,7 @@ ActiveRecord::Schema.define(version: 20140122094323) do
     t.string   "business_password_digest"
     t.string   "email"
     t.string   "role"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

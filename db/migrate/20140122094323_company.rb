@@ -6,7 +6,6 @@ class Company < ActiveRecord::Migration
       t.string     :cell_phone
       t.string     :telphone
       t.string     :address
-      t.references :user
 
       t.timestamps
     end

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   attr_accessor :business_password_confirmation, :business_password_old
 
   has_secure_password
-  has_one :company#,inverse_of: :user
+  belongs_to :company#,inverse_of: :user
   accepts_nested_attributes_for  :company
 
   validates :name, :presence => true
