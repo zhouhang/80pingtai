@@ -15,6 +15,8 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
+gem 'turbolinks'
+
 # Use foundation to replace bootstrap whitch is not supported by simple form
 gem 'compass-rails'
 #gem 'zurb-foundation'
