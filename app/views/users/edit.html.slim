@@ -10,7 +10,7 @@
       =f.input :password_confirmation,required: true
       =f.button :submit, t('layouts.header.submit')
   h2 = t 'layouts.header.changebusinesspwd'
-  = simple_form_for @user, :url=>'/users/update_business_password' do |f|
+  = simple_form_for @user, :url=>'/users/update_business_password', :html=>{:method=>:post} do |f|
         =f.input :business_password_old,required: true
         =f.input :business_password,required: true
         =f.input :business_password_confirmation,required: true
