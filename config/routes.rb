@@ -55,6 +55,7 @@ Sample::Application.routes.draw do
   #   end
 
   namespace :admin do
+    resources :users
     resources :sessions, only: [:new, :create, :destroy]
     resources :charges do
       member do
