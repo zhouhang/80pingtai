@@ -11,7 +11,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     #@user.company = Company.new company_params
-    if @user.save
+    if @user.valid?
+      @user.staff = Staff.find @user.staff_id
+      @user.save
       login_as @user
       redirect_to root_url
     else
@@ -52,7 +54,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:login,:name, :email, :password,:password_old, :password_confirmation, :business_password_confirmation, :business_password_old,:company_attributes =>[:name, :manager, :cell_phone,:telphone, :address])
+    params.require(:user).permit(:login,:name, :email, :password,:password_old, :password_confirmation, :business_password_confirmation, :business_password_old,:staff_id,:company_attributes =>[:name, :manager, :cell_phone,:telphone, :address])
   end
 
 end

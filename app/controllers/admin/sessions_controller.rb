@@ -6,9 +6,9 @@ class Admin::SessionsController < Admin::ApplicationController
   end
 
   def create
-    user = User.find_by_name(params[:session][:name].downcase)
-    if user && user.authenticate(params[:session][:password]) && user.is_admin?
-      login_as user
+    staff = Staff.find_by_login(params[:session][:login].downcase)
+    if staff && staff.authenticate(params[:session][:password]) && staff.is_a?(Staff)
+      login_as staff
       remember_me if params[:remember_me]
       redirect_to admin_root_url
     else

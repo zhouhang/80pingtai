@@ -6,7 +6,6 @@ class Charge < ActiveRecord::Base
   #validates :pay_method,presence: true,
   #:inclusion => {in: %w(abc icbc ccb tenpay),:message => I18n.t('errors.messages.pay_method_invalid')}
   validates :total, presence: true, confirmation: true, numericality: {greater_than:0}
-  validates :total_confirmation, presence: true, numericality: {greater_than:0}
 
   before_create do
     self.status='awaiting'
@@ -23,6 +22,7 @@ class Charge < ActiveRecord::Base
 
   STATUS =[
       {name:'等待处理',code:'awaiting'},
+      {name:'处理完成',code:'completed'},
       {name:'主动取消',code:'cancelled'}
   ]
 
@@ -33,6 +33,12 @@ class Charge < ActiveRecord::Base
 
   def cancel
     self.update_attribute(:status,'cancelled')
+  end
+
+  def confirm
+    self.update_attributes({:status =>'completed'})
+    self.user.increment(:credit,self.total)
+    self.user.save
   end
 
   def self.pay_method_selector

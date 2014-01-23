@@ -7,9 +7,11 @@ class User < ActiveRecord::Migration
       t.string :password_digest
       t.string :business_password
       t.string :business_password_digest
-      t.string :email
+      t.float  :credit
+      t.float  :commission
       t.string :role
       t.references :company
+      t.references :staff
 
       t.timestamps
     end

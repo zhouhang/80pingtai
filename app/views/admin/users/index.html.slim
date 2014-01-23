@@ -1,0 +1,21 @@
+.centered
+  h2 = '存款处理'
+  table
+    thead
+      tr
+        th 店名
+        th 地址
+        th 账号
+        th 账号余额
+        th 佣金余额
+        th 归属业务员
+    tbody
+    - @users.each do |u|
+      tr
+        td= u.company.name
+        td= u.company.address
+        td= u.login
+        td= u.credit
+        td= u.commission
+        td= u.staff.login
+  = paginate @users
