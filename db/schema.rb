@@ -50,11 +50,9 @@ ActiveRecord::Schema.define(version: 20140123050312) do
     t.string   "password_digest"
     t.string   "business_password"
     t.string   "business_password_digest"
-    t.float    "credit"
-    t.float    "commission"
+    t.string   "email"
     t.string   "role"
     t.integer  "company_id"
-    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

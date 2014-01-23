@@ -41,9 +41,14 @@ class UsersController < ApplicationController
 
   def update_business_password
     @user = current_user
-    if current_user.authenticate user_params[:business_password_old]
-      if @user.update_attributes(user_params)
-        redirect_to root_url and return
+    if User.where("business_password = ? and id = ?", user_params[:business_password_old], current_user.id)
+    #if current_user.authenticate user_params[:business_password_old]
+      if user_params[:business_password] == user_params[:business_password_confirmation]
+        if @user.update_attribute(:business_password, user_params[:business_password])
+          redirect_to root_url and return
+        end
+      else
+        current_user.errors.add(:business_password, I18n.t("errors.messages.new_password_not_equal_confirm"))
       end
     else
       current_user.errors.add(:business_password_old, I18n.t("errors.messages.wrong_old_business_password"))
@@ -54,7 +59,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:login,:name, :email, :password,:password_old, :password_confirmation, :business_password_confirmation, :business_password_old,:staff_id,:company_attributes =>[:name, :manager, :cell_phone,:telphone, :address])
+    params.require(:user).permit(:login,:name, :email, :password,:password_old, :password_confirmation, :business_password, :business_password_confirmation, :business_password_old,:staff_id,:company_attributes =>[:name, :manager, :cell_phone,:telphone, :address])
   end
 
 end
