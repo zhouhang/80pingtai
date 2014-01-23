@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140123050312) do
     t.float    "commission"
     t.string   "role"
     t.integer  "company_id"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -11,6 +11,7 @@ class User < ActiveRecord::Migration
       t.float  :commission
       t.string :role
       t.references :company
+      t.references :staff
 
       t.timestamps
     end
