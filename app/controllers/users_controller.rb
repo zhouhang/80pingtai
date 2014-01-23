@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     #@user.company = Company.new company_params
-    binding.pry
     if @user.save
       login_as @user
       redirect_to root_url

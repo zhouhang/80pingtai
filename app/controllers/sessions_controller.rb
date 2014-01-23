@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by_login(params[:session][:login].downcase)
     #后台用户禁止使用前台
-    if user && user.authenticate(params[:session][:password]) && !user.is_admin?
+    if user && user.authenticate(params[:session][:password]) && user.is_a?(User)
       login_as user
       remember_me if params[:remember_me]
       redirect_to root_url

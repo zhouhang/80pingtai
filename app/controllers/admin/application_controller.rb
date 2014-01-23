@@ -6,7 +6,7 @@ class Admin::ApplicationController < ActionController::Base
 
 
   def logined?
-    current_admin.present? && current_admin.is_admin?
+    current_admin.present? && current_admin.is_a?(Staff)
   end
 
   def login_as(user)
@@ -57,7 +57,7 @@ class Admin::ApplicationController < ActionController::Base
   def login_from_session
     if session[:user_id].present?
       begin
-        User.find session[:user_id]
+        Staff.find session[:user_id]
       rescue
         session[:user_id] = nil
       end
@@ -66,7 +66,7 @@ class Admin::ApplicationController < ActionController::Base
 
   def login_from_cookies
     if cookies[:remember_token].present?
-      if user = User.find_by_remember_token(cookies[:remember_token])
+      if user = Staff.find_by_remember_token(cookies[:remember_token])
         session[:user_id] = user.id
         user
       else
