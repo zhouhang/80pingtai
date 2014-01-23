@@ -7,7 +7,6 @@ class Admin::SessionsController < Admin::ApplicationController
 
   def create
     staff = Staff.find_by_login(params[:session][:login].downcase)
-    binding.pry
     if staff && staff.authenticate(params[:session][:password]) && staff.is_a?(Staff)
       login_as staff
       remember_me if params[:remember_me]

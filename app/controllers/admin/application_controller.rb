@@ -1,6 +1,7 @@
 class Admin::ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
+  respond_to :html, :json
   helper_method :logined?, :current_admin
   layout 'admin'
 

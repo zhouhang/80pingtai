@@ -56,6 +56,12 @@ Sample::Application.routes.draw do
 
   namespace :admin do
     resources :sessions, only: [:new, :create, :destroy]
+    resources :charges do
+      member do
+        post :confirm
+      end
+    end
+
     match '/signin',  to: 'sessions#new',:via => [:get,:post]
     match '/signout', to: 'sessions#destroy', :via =>[:delete,:get]
     root :to => 'home#index'

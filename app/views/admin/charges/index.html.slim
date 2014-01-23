@@ -1,0 +1,30 @@
+.centered
+  h2 = '存款处理'
+  table
+    thead
+      tr
+        th 单位名称
+        th 提交用户
+        th 存款银行
+        th 存款账号
+        th 支付金额
+        th 手续费
+        th 支付时间
+        th 备注
+        th 操作
+    tbody
+    - @charges.each do |c|
+      tr
+        td= c.user.company.name
+        td= c.user.login
+        td= c.pay_method_display_bank
+        td= c.pay_method_display_account
+        td= c.total
+        td a
+        td= c.created_at
+        td= c.desc
+        -if c.status == 'awaiting'
+          td: a href="#{confirm_admin_charge_path c}" data-remote="true" data-method="post" data-disable-with="操作中..." 处理
+        else
+          td
+  = paginate @charges
