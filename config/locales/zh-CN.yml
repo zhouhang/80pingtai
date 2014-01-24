@@ -39,6 +39,8 @@ zh-CN:
         cell_phone: '手机号码'
         telphone: '固定电话'
         address: '联系地址'
+        province: '省'
+        city: '市'
     errors:
       messages:
         invalid:  "无效"

@@ -16,8 +16,6 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
-gem 'turbolinks'
-
 # Use foundation to replace bootstrap whitch is not supported by simple form
 gem 'compass-rails'
 #gem 'zurb-foundation'
@@ -30,6 +28,7 @@ gem 'jquery-rails'
 gem 'slim', '~> 1.3.8'
 gem 'simple_form'
 gem 'nested_form'
+gem 'china_region_fu'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
