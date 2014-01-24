@@ -1,0 +1,12 @@
+.centered
+  h2 = t 'layouts.header.product'
+  - if flash[:error]
+    <div data-alert class="alert-box alert radius">
+      = flash[:error]
+    </div>
+  = simple_form_for @price, url:"/admin/prices", :html=>{:method=>:post} do |f|
+      =f.input :name,label:'产品',reuqired:true
+      =f.input :price,label:'面值',reuqired:true
+      =f.input :agent_price,label:'代理商价格',reuqired:true
+      =f.input :status, label:'状态',collection: [['开启',1],['关闭',0]],as: :radio_buttons,reuqired:true
+      =f.button :submit, t('layouts.header.submit')

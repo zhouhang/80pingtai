@@ -56,6 +56,11 @@ Sample::Application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :prices do
+      member do
+        post :update_status
+      end
+    end
     resources :sessions, only: [:new, :create, :destroy]
     resources :charges do
       member do

@@ -10,6 +10,7 @@ zh-CN:
       changepwd: "修改登陆密码"
       submit: "提交"
       changebusinesspwd: "修改交易密码"
+      product: "产品"
 
   activerecord:
     models:

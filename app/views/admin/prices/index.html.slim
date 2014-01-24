@@ -1,0 +1,24 @@
+.centered
+  h2 = '代理商充值价格管理'
+  button style="margin-left:20px" onclick="window.location.href='#{new_admin_price_path}'" 新增
+  br
+  table
+    thead
+      tr
+        th 产品
+        th 面值
+        th 代理商价格
+        th 状态
+        th 操作
+    tbody
+    - @prices.each do |p|
+      tr
+        td= p.name
+        td= p.price
+        td= p.agent_price
+        -if p.status == 0
+          td: a href="#{update_status_admin_price_path p}" data-remote="true" data-method="post" data-disable-with="操作中..." 关闭
+        -else
+          td: a href="#{update_status_admin_price_path p}" data-remote="true" data-method="post" data-disable-with="操作中..." 开启
+        td: a href="#{admin_price_path p}" data-remote="true" data-method="delete" data-disable-with="操作中..." 删除
+  = paginate @prices

@@ -41,8 +41,8 @@ class UsersController < ApplicationController
 
   def update_business_password
     @user = current_user
-    if User.where("business_password = ? and id = ?", user_params[:business_password_old], current_user.id)
-    #if current_user.authenticate user_params[:business_password_old]
+    query = User.where("business_password = ? and id = ?", user_params[:business_password_old], current_user.id)
+    if !query.empty?
       if user_params[:business_password] == user_params[:business_password_confirmation]
         if @user.update_attribute(:business_password, user_params[:business_password])
           redirect_to root_url and return

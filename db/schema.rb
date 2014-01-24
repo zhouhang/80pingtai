@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123050312) do
+ActiveRecord::Schema.define(version: 20140124054923) do
 
   create_table "charges", force: true do |t|
     t.float    "total"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20140123050312) do
     t.string   "cell_phone"
     t.string   "telphone"
     t.string   "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "prices", force: true do |t|
+    t.string   "name"
+    t.integer  "price"
+    t.integer  "agent_price"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
