@@ -8,6 +8,4 @@ $(function(){
     $(document).ajaxError(function(event, request, settings) {
         alert('操作失败');
     })
-})
-
-//    document.addEventListener("page:fetch", my_ready);
+});
