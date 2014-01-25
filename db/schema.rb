@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140124051527) do
+ActiveRecord::Schema.define(version: 20140124054923) do
 
   create_table "charges", force: true do |t|
     t.float    "total"
@@ -63,34 +63,32 @@ ActiveRecord::Schema.define(version: 20140124051527) do
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
-  create_table "prices", force: true do |t|
-    t.string   "name"
-    t.integer  "price"
-    t.integer  "agent_price"
-    t.integer  "status"
-=======
   add_index "districts", ["city_id"], name: "index_districts_on_city_id", using: :btree
   add_index "districts", ["name"], name: "index_districts_on_name", using: :btree
   add_index "districts", ["pinyin"], name: "index_districts_on_pinyin", using: :btree
   add_index "districts", ["pinyin_abbr"], name: "index_districts_on_pinyin_abbr", using: :btree
 
-  create_table "provinces", force: true do |t|
+  create_table "prices", force: true do |t|
     t.string   "name"
-    t.string   "pinyin"
-    t.string   "pinyin_abbr"
->>>>>>> 88840e835f8c8ff60f9329c4605bed35e44dd887
+    t.float    "price"
+    t.float    "agent_price"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
-=======
+  create_table "provinces", force: true do |t|
+    t.string   "name"
+    t.string   "pinyin"
+    t.string   "pinyin_abbr"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   add_index "provinces", ["name"], name: "index_provinces_on_name", using: :btree
   add_index "provinces", ["pinyin"], name: "index_provinces_on_pinyin", using: :btree
   add_index "provinces", ["pinyin_abbr"], name: "index_provinces_on_pinyin_abbr", using: :btree
 
->>>>>>> 88840e835f8c8ff60f9329c4605bed35e44dd887
   create_table "staffs", force: true do |t|
     t.string   "login"
     t.string   "name"

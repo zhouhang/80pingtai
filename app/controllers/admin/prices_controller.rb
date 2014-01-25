@@ -1,4 +1,4 @@
-class Admin::PricesController < ApplicationController
+class Admin::PricesController < Admin::ApplicationController
   layout 'admin'
   before_filter :require_logined
   def index
