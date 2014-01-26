@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140124054923) do
+ActiveRecord::Schema.define(version: 20140125153346) do
 
   create_table "charges", force: true do |t|
     t.float    "total"
@@ -67,6 +67,13 @@ ActiveRecord::Schema.define(version: 20140124054923) do
   add_index "districts", ["name"], name: "index_districts_on_name", using: :btree
   add_index "districts", ["pinyin"], name: "index_districts_on_pinyin", using: :btree
   add_index "districts", ["pinyin_abbr"], name: "index_districts_on_pinyin_abbr", using: :btree
+
+  create_table "interfaces", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "prices", force: true do |t|
     t.string   "name"
