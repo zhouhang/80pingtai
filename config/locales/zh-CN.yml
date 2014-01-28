@@ -11,6 +11,7 @@ zh-CN:
       submit: "提交"
       changebusinesspwd: "修改交易密码"
       product: "产品"
+      channel: "通道"
 
   activerecord:
     models:

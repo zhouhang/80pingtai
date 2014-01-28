@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140125153346) do
+ActiveRecord::Schema.define(version: 20140126080434) do
+
+  create_table "channels", force: true do |t|
+    t.string   "name"
+    t.string   "area"
+    t.integer  "maxlimit"
+    t.integer  "minlimit"
+    t.string   "denomination"
+    t.integer  "priority"
+    t.string   "business"
+    t.string   "other"
+    t.integer  "status"
+    t.integer  "price_id"
+    t.integer  "webapi_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "charges", force: true do |t|
     t.float    "total"
@@ -68,13 +84,6 @@ ActiveRecord::Schema.define(version: 20140125153346) do
   add_index "districts", ["pinyin"], name: "index_districts_on_pinyin", using: :btree
   add_index "districts", ["pinyin_abbr"], name: "index_districts_on_pinyin_abbr", using: :btree
 
-  create_table "interfaces", force: true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "prices", force: true do |t|
     t.string   "name"
     t.float    "price"
@@ -117,6 +126,13 @@ ActiveRecord::Schema.define(version: 20140125153346) do
     t.string   "role"
     t.integer  "company_id"
     t.integer  "staff_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "webapis", force: true do |t|
+    t.string   "name"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

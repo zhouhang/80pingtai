@@ -1,0 +1,34 @@
+.centered
+  h2 = '通道管理'
+  button style="margin-left:20px" onclick="window.location.href='#{new_admin_channel_path}'" 新增
+  br
+  table
+    thead
+      tr
+        th 通道名称
+        th 挂接产品
+        th 最大限额
+        th 最小倍数
+        th 可充值面额
+        th 优先级
+        th 相关业务
+        th 可充值区域
+        th 状态
+        th 操作
+    tbody
+    - @channels.each do |c|
+      tr
+        td= c.name
+        td= c.pname
+        td= c.maxlimit
+        td= c.minlimit
+        td= c.denomination
+        td= c.priority
+        td= c.business
+        td= c.area
+        -if c.status == 0
+          td: a href="#{update_status_admin_channel_path c}" data-remote="true" data-method="post" data-disable-with="操作中..." 关闭
+        -else
+          td: a href="#{update_status_admin_channel_path c}" data-remote="true" data-method="post" data-disable-with="操作中..." 开启
+        td: a href="#{admin_channel_path c}" data-remote="true" data-method="delete" data-disable-with="操作中..." 删除
+  //= paginate @channels

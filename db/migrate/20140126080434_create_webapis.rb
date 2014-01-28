@@ -1,6 +1,6 @@
-class CreateInterfaces < ActiveRecord::Migration
+class CreateWebapis < ActiveRecord::Migration
   def change
-    create_table :interfaces do |t|
+    create_table :webapis do |t|
       t.string :name
       t.string :url
 

@@ -13,6 +13,7 @@
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
+//= require jquery.tree.js
 //= require foundation
 //= require modernizr.js
 //= require_tree .

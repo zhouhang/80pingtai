@@ -56,6 +56,12 @@ Sample::Application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :channels do
+      member do
+        post :update_status
+      end
+    end
+    match 'channles/get_provinces_cites',  to: 'channels#get_provinces_cities',:via => [:get,:post]
     resources :prices do
       member do
         post :update_status
