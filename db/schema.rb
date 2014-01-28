@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140126080434) do
+ActiveRecord::Schema.define(version: 20140128161246) do
 
   create_table "channels", force: true do |t|
     t.string   "name"
@@ -133,6 +133,19 @@ ActiveRecord::Schema.define(version: 20140126080434) do
   create_table "webapis", force: true do |t|
     t.string   "name"
     t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "workids", force: true do |t|
+    t.string   "name"
+    t.string   "password"
+    t.string   "business_password"
+    t.integer  "priority"
+    t.string   "day_limit"
+    t.string   "business"
+    t.integer  "status"
+    t.integer  "channel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

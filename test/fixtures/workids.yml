@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  business_password: MyString
+  priority: 1
+  day_limit: MyString
+  business: MyString
+  status: 1
+  channel_id: 1
+
+two:
+  name: MyString
+  business_password: MyString
+  priority: 1
+  day_limit: MyString
+  business: MyString
+  status: 1
+  channel_id: 1

@@ -1,0 +1,28 @@
+.centered
+  h2 = '工号管理'
+  button style="margin-left:20px" onclick="window.location.href='#{new_admin_workid_path}'" 新增
+  br
+  table
+    thead
+      tr
+        th 工号
+        th 日限额
+        th 优先级
+        th 绑定通道
+        th 相关业务
+        th 状态
+        th 操作
+    tbody
+    - @workids.each do |w|
+      tr
+        td= w.name
+        td= w.day_limit
+        td= w.priority
+        td= w.channel.name
+        td= w.business
+        -if w.status == 0
+          td: a href="#{update_status_admin_workid_path w}" data-remote="true" data-method="post" data-disable-with="操作中..." 关闭
+        -else
+          td: a href="#{update_status_admin_workid_path w}" data-remote="true" data-method="post" data-disable-with="操作中..." 开启
+        td: a href="#{admin_workid_path w}" data-remote="true" data-method="delete" data-disable-with="操作中..." 删除
+  = paginate @workids

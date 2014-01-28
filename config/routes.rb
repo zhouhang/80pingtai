@@ -67,6 +67,11 @@ Sample::Application.routes.draw do
         post :update_status
       end
     end
+    resources :workids do
+      member do
+        post :update_status
+      end
+    end
     resources :sessions, only: [:new, :create, :destroy]
     resources :charges do
       member do
