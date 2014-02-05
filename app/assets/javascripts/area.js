@@ -44,26 +44,27 @@ return root;
 
 //var treedata = [createNode()];
 
-
-$.ajax({
-    type: "post",
-    data:{},
-    dataType:"json",
-    url: "/admin/channles/get_provinces_cites",
-    success: function(data, textStatus){
-        var treedata = data.data;
-        var o = { showcheck: true};
-        o.data = treedata;
-        $("#tree").treeview(o);
-    },
-    complete: function(XMLHttpRequest, textStatus){
-        //HideLoading();
-        //alert("complete"+textStatus);
-    },
-    error: function(){
-        //请求出错处理
-    }
-});
+if($('#tree').length > 0){
+  $.ajax({
+      type: "post",
+      data:{},
+      dataType:"json",
+      url: "/admin/channles/get_provinces_cites",
+      success: function(data, textStatus){
+          var treedata = data.data;
+          var o = { showcheck: true};
+          o.data = treedata;
+          $("#tree").treeview(o);
+      },
+      complete: function(XMLHttpRequest, textStatus){
+          //HideLoading();
+          //alert("complete"+textStatus);
+      },
+      error: function(){
+          //请求出错处理
+      }
+  });
+}
 $("#submit").click(function(e){
     var s=$("#tree").getCheckedNodes();
     if(s !=null){

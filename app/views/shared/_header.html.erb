@@ -13,17 +13,20 @@
 
   <section class="top-bar-section">
     <ul class="right">
+      <li>
+        <a>欢迎你,<%=current_user.name%></a>
+      </li>
+      <li><a href="<%=signout_path%>">退出</a></li>
+    </ul>
+<!--     <ul class="right">
       <li class="has-dropdown">
         <a href="#" data-no-turbolink>下拉菜单</a>
         <ul class="dropdown">
           <li><a href="#">下拉选项</a></li>
         </ul>
       </li>
-    </ul>
+    </ul> -->
 
-    <ul class="left">
-      <li><a href="#">左边按钮</a></li>
-    </ul>
   </section>
 </nav>
 

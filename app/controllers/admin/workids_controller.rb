@@ -6,7 +6,6 @@ class Admin::WorkidsController < ApplicationController
     #@workids.each do |w|
     #  channel = Channel.find w.channel_id
     #  w.channel = channel.name
-    #  binding.pry
     #end
   end
 

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @user = User.new :password => 1
     #@user.company = @user.build_company
     referrer = request.headers['X-XHR-Referer'] || request.referrer
-    store_location referrer if referrer.present?
+    # store_location referrer if referrer.present?
   end
 
   def create
