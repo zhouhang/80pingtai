@@ -68,7 +68,7 @@ if($('#tree').length > 0){
 $("#submit").click(function(e){
     var s=$("#tree").getCheckedNodes();
     if(s !=null){
-        $("#channel_area").val(s.join(","));
+        $("#channel_area").val(s.join(",").replace("province,",""));
         alert($("#channel_area").val());
     }else{
         alert("NULL");

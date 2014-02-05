@@ -1,4 +1,4 @@
-class Admin::WorkidsController < ApplicationController
+class Admin::WorkidsController < Admin::ApplicationController
   layout 'admin'
   before_filter :require_logined
   def index

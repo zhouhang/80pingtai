@@ -11,7 +11,7 @@
       =f.input :denomination,label:'可充值面额'
       =f.input :priority,label:'优先级'
       =f.input :business,label:'相关业务',as: :radio_buttons,collection: [['无',0],['允许充正',1]],priority: [ 0 ]
-      =f.input :area, label:' ', :html=>{:type=>:hidden}
+      =f.input :area, :as => :hidden
       =f.button :submit, t('layouts.header.submit'), id:'submit'
 
 =javascript_include_tag "area"
