@@ -44,6 +44,9 @@ zh-CN:
         address: '联系地址'
         province: '省'
         city: '市'
+      phone:
+        total: '缴费金额'
+        obj:   '缴费号码'
     errors:
       messages:
         invalid:  "无效"

@@ -1,0 +1,6 @@
+.centered
+  h2 = '话费缴费'
+  = simple_form_for @phone do |f|
+  	= f.input :obj
+    = f.input :total
+    =f.button :submit, '缴费'

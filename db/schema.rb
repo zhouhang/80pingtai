@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128161246) do
+ActiveRecord::Schema.define(version: 20140206053455) do
 
   create_table "channels", force: true do |t|
     t.string   "name"
@@ -110,6 +110,17 @@ ActiveRecord::Schema.define(version: 20140128161246) do
     t.string   "name"
     t.string   "password"
     t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions", force: true do |t|
+    t.string   "type"
+    t.string   "obj"
+    t.float    "fee"
+    t.float    "total"
+    t.string   "status"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

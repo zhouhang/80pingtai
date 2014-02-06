@@ -84,7 +84,7 @@ Sample::Application.routes.draw do
     root :to => 'home#index'
   end
 
-  resources :users
+  resources :users, :phones
   resources :charges do
     member do
       post :cancel
@@ -94,7 +94,7 @@ Sample::Application.routes.draw do
   match '/signup',  to: 'users#new',:via => [:get]
   match '/signin',  to: 'sessions#new',:via => [:get,:post]
   match '/signout', to: 'sessions#destroy', :via =>[:delete,:get]
-  root  'home#index'
+  root :to => 'phones#new'
 
   match 'users/update_business_password', to: 'users#update_business_password', :via =>[:post]
 

@@ -1,0 +1,21 @@
+.centered
+  h2 = '话费历史'
+  table
+    thead
+      tr
+        th 充值产品
+        th 充值对象
+        th 金额
+        th 佣金
+        th 时间
+        th 状态
+    tbody
+    - @phones.each do |p|
+      tr
+        td
+        td= p.obj
+        td= p.total
+        td= p.fee
+        td= p.created_at
+        td= p.status_display
+  = paginate @phones

@@ -7,8 +7,10 @@
     <ul class="side-nav">
       <li class="heading">缴费业务</li>
       <li class="divider"></li>
-      <li><a href="#" data-search>话费缴费</a></li>
-      <li><a href="#">话费缴费历史查询</a></li>
+      <li class="<%="#{cp(new_phone_path)}"%>">
+        <a href="<%=new_phone_path%>">话费缴费</a>
+      </li>
+      <li class="<%="#{cp(phones_path)}"%>"><a href="<%=phones_path%>">话费缴费历史查询</a></li>
       <li><a href="#">Q币业务</a></li>
       <li><a href="#">游戏业务</a></li>
       <li><a href="#">游戏缴费历史查询</a></li>
