@@ -22,5 +22,9 @@ module Sample
     # config.i18n.default_locale = :de
     config.i18n.default_locale = 'zh-CN'
     I18n.enforce_available_locales = false
+
+    #webapi
+    config.autoload_paths += %W(#{config.root}/lib)
+
   end
 end

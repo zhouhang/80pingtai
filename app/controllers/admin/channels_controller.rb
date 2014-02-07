@@ -10,6 +10,7 @@ class Admin::ChannelsController < Admin::ApplicationController
 
   def new
     @channel = Channel.new
+    #puts Constant.instance_variable_get(:@gaoyang_tel_recharge)
   end
 
   def create

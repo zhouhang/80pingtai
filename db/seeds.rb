@@ -12,3 +12,9 @@ a.company = a.build_company(:name=>'时代通讯', :manager=>'张三', :cell_pho
 a.staff = staff
 a.staff_id = staff.id
 a.save
+
+Webapi.create!(name:'高阳',pinyin:'gaoyang')
+Webapi.create!(name:'千行',pinyin:'qianxing')
+Webapi.create!(name:'鲲鹏',pinyin:'kunpeng')
+Webapi.create!(name:'易赛',pinyin:'esai')
+Webapi.create!(name:'鑫宇',pinyin:'xinyu')

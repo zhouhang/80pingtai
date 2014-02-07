@@ -2,7 +2,7 @@ class CreateWebapis < ActiveRecord::Migration
   def change
     create_table :webapis do |t|
       t.string :name
-      t.string :url
+      t.string :pinyin
 
       t.timestamps
     end
