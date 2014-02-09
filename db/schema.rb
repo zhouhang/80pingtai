@@ -16,12 +16,9 @@ ActiveRecord::Schema.define(version: 20140206053455) do
   create_table "channels", force: true do |t|
     t.string   "name"
     t.string   "area"
-    t.integer  "maxlimit"
-    t.integer  "minlimit"
-    t.string   "denomination"
     t.integer  "priority"
+    t.string   "denomination"
     t.string   "business"
-    t.string   "other"
     t.integer  "status"
     t.integer  "price_id"
     t.integer  "webapi_id"
@@ -88,6 +85,7 @@ ActiveRecord::Schema.define(version: 20140206053455) do
     t.string   "name"
     t.float    "price"
     t.float    "agent_price"
+    t.float    "member_price"
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -143,7 +141,7 @@ ActiveRecord::Schema.define(version: 20140206053455) do
 
   create_table "webapis", force: true do |t|
     t.string   "name"
-    t.string   "url"
+    t.string   "pinyin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -154,6 +152,8 @@ ActiveRecord::Schema.define(version: 20140206053455) do
     t.string   "business_password"
     t.integer  "priority"
     t.string   "day_limit"
+    t.string   "ext1"
+    t.string   "ext2"
     t.string   "business"
     t.integer  "status"
     t.integer  "channel_id"

@@ -1,7 +1,7 @@
 class Channel < ActiveRecord::Base
   has_one :price
   has_one :webapi
-  has_one :workid
+  has_many :workid
 
   def self.get_prices
     @prices = Price.select(:name, :id).to_a

@@ -4,6 +4,7 @@ class CreatePrices < ActiveRecord::Migration
       t.string :name
       t.float :price
       t.float :agent_price
+      t.float :member_price
       t.integer :status
 
       t.timestamps

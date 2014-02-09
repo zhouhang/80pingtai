@@ -6,8 +6,6 @@
       <label class="select optional control-label" for="channel_price">区域选择</label>
       <div id="tree" class="bbit-tree"></div>
       =f.input :webapi_id,label:'接口',collection: Channel.get_webapi
-      =f.input :maxlimit,label:'最大限额'
-      =f.input :minlimit,label:'最小倍数'
       =f.input :denomination,label:'可充值面额'
       =f.input :priority,label:'优先级'
       =f.input :business,label:'相关业务',as: :radio_buttons,collection: [['无',0],['允许充正',1]],priority: [ 0 ]

@@ -6,9 +6,11 @@ class CreateWorkids < ActiveRecord::Migration
       t.string :business_password
       t.integer :priority
       t.string :day_limit
+      t.string :ext1
+      t.string :ext2
       t.string :business
       t.integer :status
-      t.integer :channel_id
+      t.references :channel
 
       t.timestamps
     end
