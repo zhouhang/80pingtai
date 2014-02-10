@@ -6,6 +6,7 @@ class CreateChannels < ActiveRecord::Migration
       t.integer :priority
       t.string :denomination
       t.string :business
+      t.string :remark
       t.integer :status
       t.references :price
       t.references :webapi

@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140206053455) do
     t.integer  "priority"
     t.string   "denomination"
     t.string   "business"
+    t.string   "remark"
     t.integer  "status"
     t.integer  "price_id"
     t.integer  "webapi_id"

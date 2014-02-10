@@ -9,8 +9,21 @@
       =f.input :denomination,label:'可充值面额'
       =f.input :priority,label:'优先级'
       =f.input :business,label:'相关业务',as: :radio_buttons,collection: [['无',0],['允许充正',1]],priority: [ 0 ]
+      =f.input :remark,label:"备注", input_html:{style: 'display:none'}
       =f.input :area, :as => :hidden
       =f.button :submit, t('layouts.header.submit'), id:'submit'
 
 =javascript_include_tag "area"
 javascript:
+  $(".channel_remark").hide();
+  $("input[name='channel[business]']").change(
+  function() {
+    if($(this).val() == 1){
+      $(".channel_remark").show();
+      $("#channel_remark").show();
+    }else{
+      $("#channel_remark").val("");
+      $(".channel_remark").hide();
+      $("#channel_remark").hide();
+    }
+  });

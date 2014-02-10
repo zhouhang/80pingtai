@@ -20,7 +20,10 @@
         td= c.pname
         td= c.denomination
         td= c.priority
-        td= c.business
+        -if c.business == "0"
+          td 无
+        -else
+          td 允许充正
         td= c.area
         -if c.status == 0
           td: a href="#{update_status_admin_channel_path c}" data-remote="true" data-method="post" data-disable-with="操作中..." 关闭
