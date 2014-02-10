@@ -8,6 +8,7 @@
         th 产品
         th 面值
         th 代理商价格
+        th 会员价格
         th 状态
         th 操作
     tbody
@@ -16,6 +17,7 @@
         td= p.name
         td= p.price
         td= p.agent_price
+        td= p.member_price
         -if p.status == 0
           td: a href="#{update_status_admin_price_path p}" data-remote="true" data-method="post" data-disable-with="操作中..." 关闭
         -else
