@@ -11,8 +11,24 @@ class PhonesController < ApplicationController
   end
 
   def create
+
     @phone = Phone.new phone_params
+
+    if(params[:phone][:business_password] != current_user.business_password)
+      @phone.errors.add(:business_password, '交易密码错误')
+      render action: "new" and return
+    end
+
     #todo find channel,calculate price and fee,grand fee to user
+    #l =location.find(:number,phone_params[:obj])
+    #c = channels.find_by_location l 
+    #c = c.sort_by_priority.first
+    #current_user.grant_fee (c.price - c.price.agent_price)
+    #c.workids.avaiable means status == 1
+    # c.workids.avaiable.sort_by_priority.each |w| do
+      # adjust day_limit
+    # end
+    #auth buz password
     @phone.user= current_user
     if @phone.save
       redirect_to action:'index'

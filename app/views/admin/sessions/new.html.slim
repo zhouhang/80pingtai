@@ -1,10 +1,19 @@
-.centered
-  h2 = t 'layouts.header.signin'
-  - if flash[:error]
-    <div data-alert class="alert-box alert radius">
-      = flash[:error]
-    </div>
-  = simple_form_for :session,url:admin_sessions_path do |f|
-      =f.input :login,label:'用户名'
-      =f.input :password,label:'密码'
-      =f.button :submit, t('layouts.header.signin')
+.span7
+  img src="http://80pingtai.com/Res/images/wqLogin/login_left.png"
+.span5  
+  .box.radius
+    .text-center
+      h4 登录
+      hr
+      - if flash[:error]
+        <div data-alert class="alert alert-error">
+          = flash[:error]
+        </div>
+      = simple_form_for :session,url:admin_sessions_path do |f|
+          =f.input :login,label:'用户名'
+          =f.input :password,label:'密码'
+          =f.button :submit, t('layouts.header.signin')
+javascript:
+  window.onload = function(){
+    document.forms[0].className = ''
+  }

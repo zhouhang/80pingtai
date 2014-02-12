@@ -11,11 +11,12 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for  :company
   before_save :set_default_business_password
 
-  validates :name,:staff_id, :presence => true
+  validates :name, :presence => true
   #validates :email, :presence => true, :uniqueness => {:case_sensitive => false}, :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}
   validates :password, :presence => true, :length => { :minimum => 6 }, confirmation: true, :on => :create
   validates :password, length: {:minimum => 6}, on: :update, allow_blank: true
-  validate :staff_valid
+  validates :staff_id, :presence => true,:on => :create
+  validate :staff_valid, :on => :create
   def self.find_by_remember_token(token)
     user = where(:_id => token.split('$').first).first
     (user && user.remember_token == token) ? user : nil
@@ -39,6 +40,10 @@ class User < ActiveRecord::Base
     if self.business_password.blank?
       self.business_password = '666666'
     end
+
+  def grant_fee total
+    self.increment(:credit,total)
+    self.save
   end
 
 end

@@ -2,7 +2,7 @@ class Admin::ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   respond_to :html, :json
-  helper_method :logined?, :current_admin
+  helper_method :logined?, :current_admin, :set_title, :form_title
   layout 'admin'
 
 
@@ -85,5 +85,12 @@ class Admin::ApplicationController < ActionController::Base
     }
   end
 
+  def set_title(title)
+    @form_title = title
+  end 
+
+  def form_title
+    @form_title
+  end 
 
 end

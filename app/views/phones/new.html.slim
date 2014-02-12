@@ -1,6 +1,19 @@
 .centered
-  h2 = '话费缴费'
+  -set_title '话费缴费'
   = simple_form_for @phone do |f|
-  	= f.input :obj
+    = f.input :obj
+    = f.input :location, input_html: {value: '',disabled:true}
     = f.input :total
+    = f.input :business_password, input_html:{value:''},label:'交易密码'
     =f.button :submit, '缴费'
+
+javascript:
+  $(document).on('ready page:load', function () {
+    $('#phone_obj').on('change',function(e){
+      console.log(e.target.value)
+      $.get( "/locations/search?number="+e.target.value, function( data ) {
+        $('#phone_location').val(data.city+' '+ data.isp)
+          console.log(data)
+      });
+    });
+  });

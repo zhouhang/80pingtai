@@ -1,42 +1,84 @@
-.sidebar{
-  .side-nav {
-    background: none repeat scroll 0% 0% #FAFAFA;
-    padding: 32px 20px;
-    line-height: 2.6;
+ @import "bootstrap";
+/* 
+a {
+  color: #000;
+  text-decoration: none;
+} */
 
-    .heading{
-      color: #FFFFFF;
-      background-color:  #008fba;;
-      position: relative;
-      margin: 0 -20px;
-      padding-left: 20px;
-      padding-right: 20px;
-      font-weight: bold;
-    }
+.radius{
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
 
-    li{
-    }
+}
 
-    li.active > a:first-child {
-      position: relative;
-      margin: 0 -20px;
-      padding-left: 20px;
-      padding-right: 20px;
-      font-weight: bold;
-      color: #008fba;
-      background: rgba(0, 64, 84, 0.05);
-    }
+.box-small {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+}
 
-
-    li:hover > a:first-child {
-      position: relative;
-      margin: 0 -20px;
-      padding-left: 20px;
-      padding-right: 20px;
-      font-weight: bold;
-      color: #006887;
-      background: rgba(0, 64, 84, 0.03);
-    }
-
+.box {
+  max-width: 600px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+}
+.center {
+     float: none;
+     margin-left: auto;
+     margin-right: auto;
+}
+.black-bar{
+  background: #000;
+  opacity: 0.7;
+  font-size: 12px;
+}
+.footer {
+  @extend .black-bar;
+  padding: 13px 0;
+  // position: fixed;
+  height: 16px;
+  bottom: 0;
+  width: 100%;
+  p {
+    color: #fff;
   }
 }
+/* .header-bar{
+  background: #333;
+  opacity: 0.7;
+  font-size: 12px;
+  height: 35px;
+  line-height:35px;
+  ul{
+    li {
+      a {
+          color :#fff;
+        }
+    }
+  } 
+}
+ */
+/* .header{
+  padding: 0 35px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to bottom, #FFF, #E3E3E3) repeat-x scroll 0% 0% #FAFAFA;
+  border-radius: 3px 3px 0px 0px;
+  color: #323232;
+} */
+/*h2{
+  font-size: 18px;
+  height: 17px;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to bottom, #FFF, #F3F3F3) repeat-x scroll 0% 0% #FAFAFA;
+  border-radius: 3px 3px 0px 0px;
+  color: #323232;
+}*/

@@ -1,6 +1,5 @@
 
 $(function(){
-    $(document).foundation();
     $(document).bind('ajax:success', function(evt, data, status, xhr){
         alert('操作成功');
         Turbolinks.visit(location.href)
