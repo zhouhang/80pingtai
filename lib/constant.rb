@@ -36,4 +36,6 @@ class Constant
   @tenpay_order_query = 'https://gw.tenpay.com/gateway/normalorderquery.xml'
   @tenpay_refund = 'https://mch.tenpay.com/refundapi/gateway/refund.xml'
   @tenpay_refund_query = 'https://gw.tenpay.com/gateway/normalrefundquery.xml'
+
+  #puts Constant.instance_variable_get(:@gaoyang_tel_recharge)
 end

@@ -11,12 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206053455) do
+ActiveRecord::Schema.define(version: 20140212021902) do
+
+  create_table "channelgroups", force: true do |t|
+    t.integer  "province_id"
+    t.integer  "city_id"
+    t.integer  "operator_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "channelgroupships", force: true do |t|
+    t.integer  "channel_id"
+    t.integer  "order"
+    t.integer  "channelgroup_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "channels", force: true do |t|
     t.string   "name"
     t.string   "area"
-    t.integer  "priority"
+    t.integer  "operator_id"
     t.string   "denomination"
     t.string   "business"
     t.string   "remark"

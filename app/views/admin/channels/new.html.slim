@@ -7,7 +7,7 @@
       <div id="tree" class="bbit-tree"></div>
       =f.input :webapi_id,label:'接口',collection: Channel.get_webapi
       =f.input :denomination,label:'可充值面额'
-      =f.input :priority,label:'优先级'
+      =f.input :operator_id,label:'运营商',as: :select, collection:[['移动','0'],['联通','1'],['电信','2']]
       =f.input :business,label:'相关业务',as: :radio_buttons,collection: [['无',0],['允许充正',1]],priority: [ 0 ]
       =f.input :remark,label:"备注", input_html:{style: 'display:none'}
       =f.input :area, :as => :hidden

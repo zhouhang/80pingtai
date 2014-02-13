@@ -1,0 +1,33 @@
+.centered
+  h2 = '通道分组管理'
+  button style="margin-left:20px" onclick="window.location.href='#{new_admin_channelgroup_path}'" 新增
+  br
+  table
+    thead
+      tr
+        th 区域
+        th 运营商
+        th 操作
+        th 通道
+        th 删除
+    tbody
+    - @channelgroups.each do |c|
+      tr
+        -if c.province == nil
+          td 全国
+        -else
+          -if c.city == nil
+            td= c.province.name
+          -else
+            td= "#{c.province.name}"
+        //td= "#{c.province.name}#{c.city.name}"
+        -if c.operator_id == 0
+          td  移动
+        -if c.operator_id == 1
+          td  联通
+        -if c.operator_id == 2
+          td  电信
+        td: a href="#{edit_admin_channelgroup_path c}" 编辑
+        td= Channel.get_channelnames c.channels
+        td: a href="#{admin_channelgroup_path c}" data-remote="true" data-method="delete" data-disable-with="操作中..." 删除
+  //= paginate @channelgroups

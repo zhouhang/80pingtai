@@ -3,7 +3,7 @@ class CreateChannels < ActiveRecord::Migration
     create_table :channels do |t|
       t.string :name
       t.string :area
-      t.integer :priority
+      t.integer :operator_id
       t.string :denomination
       t.string :business
       t.string :remark

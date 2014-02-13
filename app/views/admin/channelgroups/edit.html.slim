@@ -1,0 +1,12 @@
+.centered
+  h2 = t 'layouts.header.channelgroup'
+  = simple_form_for @channelgroup, url:admin_channelgroup_path do |f|
+      =f.input :province_id,label:'选择省份', as: :region, collection: Province.select('id, name'), sub_region: :city,:selected=>@channelgroup.province_id,reuqired:true
+      =f.input :city_id,label:'选择城市', as: :region,:selected=>@channelgroup.province_id,reuqired:true
+      =f.input :operator_id,label:'运营商',as: :select, collection:[['移动','0'],['联通','1'],['电信','2']],:selected=>@channelgroup.operator_id,reuqired:true
+      - @channels.each do |c|
+        ="#{c.name}"
+        input name="channels[#{c.id}]" type="text" value="#{c.order}" style="width:60px"
+        br
+      //=f.input :province_id,label:'通道',as: :check_boxes, collection:Channelgroup.getChannelsOrders(@channelgroup.channels, @channelgroup.channelgroupships),reuqired:true
+      =f.button :submit, t('layouts.header.submit')

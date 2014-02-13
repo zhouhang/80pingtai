@@ -10,7 +10,6 @@ class Admin::ChannelsController < Admin::ApplicationController
 
   def new
     @channel = Channel.new
-    #puts Constant.instance_variable_get(:@gaoyang_tel_recharge)
   end
 
   def create
@@ -54,7 +53,7 @@ class Admin::ChannelsController < Admin::ApplicationController
 
   private
   def channel_params
-    params.require(:channel).permit(:name, :price_id, :webapi_id, :denomination, :priority, :business, :remark, :area)
+    params.require(:channel).permit(:name, :price_id, :webapi_id, :denomination, :operator_id, :business, :remark, :area)
   end
 
 end

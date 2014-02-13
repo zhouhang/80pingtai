@@ -62,6 +62,7 @@ Sample::Application.routes.draw do
       end
     end
     match 'channles/get_provinces_cites',  to: 'channels#get_provinces_cities',:via => [:get,:post]
+    resources :channelgroups
     resources :prices do
       member do
         post :update_status

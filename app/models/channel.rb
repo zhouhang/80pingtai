@@ -3,6 +3,9 @@ class Channel < ActiveRecord::Base
   has_one :webapi
   has_many :workid
 
+  has_many :channelgroupships
+  has_many :channelgroups, :through => :channelgroupships
+
   def self.get_prices
     @prices = Price.select(:name, :id).to_a
   end
@@ -26,6 +29,14 @@ class Channel < ActiveRecord::Base
 
   def self.get_channels_display
     @channels = Channel.find_by_sql("select channels.*, prices.name as pname from channels left join prices on channels.price_id = prices.id")
+  end
+
+  def self.get_channelnames(channels)
+    channelnames = ""
+    channels.each do |cn|
+      channelnames += cn.name+","
+    end
+    channelnames
   end
 
 end

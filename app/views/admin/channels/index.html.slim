@@ -8,7 +8,7 @@
         th 通道名称
         th 挂接产品
         th 可充值面额
-        th 优先级
+        th 运营商
         th 相关业务
         th 可充值区域
         th 状态
@@ -19,7 +19,12 @@
         td= c.name
         td= c.pname
         td= c.denomination
-        td= c.priority
+        -if c.operator_id == 0
+          td  移动
+        -if c.operator_id == 1
+          td  联通
+        -if c.operator_id == 2
+          td  电信
         -if c.business == "0"
           td 无
         -else

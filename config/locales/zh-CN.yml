@@ -12,6 +12,7 @@ zh-CN:
       changebusinesspwd: "修改交易密码"
       product: "产品"
       channel: "通道"
+      channelgroup: "通道分组"
       workid: "工号"
 
   activerecord:
