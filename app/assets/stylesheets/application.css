@@ -9,20 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require tree
+ *= require home
+ *= require main
  */
 
-.main-footer{
-		margin-top: 20px;
-		padding: 12px 0 10px;
-    background: #333;
-    height: 48px;
-}
-.main-footer p{
-    text-align:center;
-    color: #666;
-}
-
-.signup{
-    margin: 0 auto;
-}

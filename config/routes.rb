@@ -82,16 +82,18 @@ Sample::Application.routes.draw do
 
     match '/signin',  to: 'sessions#new',:via => [:get,:post]
     match '/signout', to: 'sessions#destroy', :via =>[:delete,:get]
-    root :to => 'home#index'
+    root :to => 'users#index'
   end
 
   resources :users, :phones
+
   resources :charges do
     member do
       post :cancel
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
+  match 'locations/search', to: 'locations#search', :via => [:get]
   match '/signup',  to: 'users#new',:via => [:get]
   match '/signin',  to: 'sessions#new',:via => [:get,:post]
   match '/signout', to: 'sessions#destroy', :via =>[:delete,:get]

@@ -1,41 +1,42 @@
-.centered
-  h2 = t 'layouts.header.signup'
-  /  :remote => true,
-  /= form_for @user,  :validate => true do |f|
-  /  .form-group
-  /  = f.label :name
-  /  = f.text_field :name, :tabindex => 1, :autofocus => true
-  /  .form-group
-  /  = f.label :email
-  /  = f.text_field :email, :tabindex => 2
-  /  .form-group
-  /  = f.label :password
-  /  = f.password_field :password, :tabindex => 3, :validate => false
-  /  .form-group
-  /  = f.label :password_confirmation
-  /  = f.password_field :password_confirmation, :tabindex => 4
-  /  .form-group
-  /      /:class => 'button-green',
-  /  = f.submit t('layouts.header.signup'),  :tabindex => 5
-  = simple_nested_form_for  @user do |f|
-    h4 账号信息
-    hr
-    =f.input :login
-    =f.input :name
-    =f.input :password
-    =f.input :password_confirmation,required: true
+.box.radius
+  .text-center   
+    h2 = t 'layouts.header.signup'
+    /  :remote => true,
+    /= form_for @user,  :validate => true do |f|
+    /  .form-group
+    /  = f.label :name
+    /  = f.text_field :name, :tabindex => 1, :autofocus => true
+    /  .form-group
+    /  = f.label :email
+    /  = f.text_field :email, :tabindex => 2
+    /  .form-group
+    /  = f.label :password
+    /  = f.password_field :password, :tabindex => 3, :validate => false
+    /  .form-group
+    /  = f.label :password_confirmation
+    /  = f.password_field :password_confirmation, :tabindex => 4
+    /  .form-group
+    /      /:class => 'button-green',
+    /  = f.submit t('layouts.header.signup'),  :tabindex => 5
+    = simple_nested_form_for  @user do |f|
+      h4 账号信息
+      hr
+      =f.input :login
+      =f.input :name
+      =f.input :password
+      =f.input :password_confirmation,required: true
 
-    h4 单位信息
-    hr
-    = f.simple_fields_for :company,@user.company_for_form do |p|
-      =p.input :name
-      =p.input :manager
-      =p.input :cell_phone
-      =p.input :telphone
-      =p.input :address
-      =p.input :province, as: :region, collection: Province.select('id, name'), sub_region: :city
-      =p.input :city, as: :region
-      /=js_for_region_ajax
-    =f.input  :staff_id, label:'推荐码',reuqired:true
+      h4 单位信息
+      hr
+      = f.simple_fields_for :company,@user.company_for_form do |p|
+        =p.input :name
+        =p.input :manager
+        =p.input :cell_phone
+        =p.input :telphone
+        =p.input :address
+        =p.input :province, as: :region, collection: Province.select('id, name'), sub_region: :city
+        =p.input :city, as: :region
+        /=js_for_region_ajax
+      =f.input  :staff_id, label:'推荐码',reuqired:true
 
-    =f.button :submit, t('layouts.header.signup')
+      =f.button :submit, t('layouts.header.signup')

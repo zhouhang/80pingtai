@@ -48,6 +48,7 @@ zh-CN:
       phone:
         total: '缴费金额'
         obj:   '缴费号码'
+        location: '号码归属'
     errors:
       messages:
         invalid:  "无效"

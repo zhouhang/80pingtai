@@ -1,40 +1,37 @@
-<nav class="top-bar" data-topbar>
-  <ul class="title-area">
-    <li class="name hide-for-small">
-      <h1><a href="#">80平台</a></h1>
-    </li>
-    <li class="show-for-small">
-      <a class="left-off-canvas-toggle menu-icon">
-        <span>Foundation</span>
-      </a>
-    </li>
-    <li class="toggle-topbar menu-icon"><a href="#">菜单</a></li>
-  </ul>
+<!-- <div class="row header">
+  <div class="pull-left"><img src="assets/logo.png" /></div>
+  <div class="pull-right" style="margin-top:15px;">
+  <ul class="nav-pills unstyled" >
+      <li>余额: <span class="label label-info"><%=current_user.credit%></span>&nbsp;</li>
+      <li>佣金: <span class="label label-info"><%=current_user.commission%></span>&nbsp;</li>
+      <li class=""><i class="icon-star"></i>欢迎你,<%=current_user.name%></a></li>
+      <li class=""><a href="<%=signout_path%>"><i class="icon-off"></i>退出</a></li>
+    </ul>  
+  </div>
+</div> -->
+<div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">80平台</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> <%=current_user.name%> <i class="caret"></i>
 
-  <section class="top-bar-section">
-    <ul class="right">
-      <li>
-        <a>欢迎你,<%=current_user.name%></a>
-      </li>
-      <li><a href="<%=signout_path%>">退出</a></li>
-    </ul>
-<!--     <ul class="right">
-      <li class="has-dropdown">
-        <a href="#" data-no-turbolink>下拉菜单</a>
-        <ul class="dropdown">
-          <li><a href="#">下拉选项</a></li>
-        </ul>
-      </li>
-    </ul> -->
-
-  </section>
-</nav>
-
-<aside class="left-off-canvas-menu">
-  <ul class="off-canvas-list">
-    <li><label>1111</label></li>
-    <li><a href="#">2222</a></li>
-    <li><a href="#">333333</a></li>
-    <li><a href="#">44444</a></li>
-  </ul>
-</aside>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a tabindex="-1" href="#">余额:<%=current_user.credit%></a></li>
+                                    <li><a tabindex="-1" href="#">余额:<%=current_user.credit%></a></li>
+                                    <li class="divider"></li>
+                                    <li data-no-turbolink><a tabindex="-1" href="<%=signout_path%>">退出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>

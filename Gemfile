@@ -18,8 +18,9 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use foundation to replace bootstrap whitch is not supported by simple form
 gem 'compass-rails'
+gem 'bootstrap-sass', "~> 2.3.2"
 #gem 'zurb-foundation'
-gem 'foundation-rails'
+# gem 'foundation-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

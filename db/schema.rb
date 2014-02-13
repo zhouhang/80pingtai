@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140212021902) do
 
   create_table "channelgroups", force: true do |t|
@@ -28,6 +29,9 @@ ActiveRecord::Schema.define(version: 20140212021902) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+=======
+ActiveRecord::Schema.define(version: 20140210062459) do
+>>>>>>> 82b49542ce246d0df600db284907a1720bfe766f
 
   create_table "channels", force: true do |t|
     t.string   "name"
@@ -98,6 +102,15 @@ ActiveRecord::Schema.define(version: 20140212021902) do
   add_index "districts", ["pinyin"], name: "index_districts_on_pinyin", using: :btree
   add_index "districts", ["pinyin_abbr"], name: "index_districts_on_pinyin_abbr", using: :btree
 
+  create_table "locations", force: true do |t|
+    t.string   "number"
+    t.string   "city"
+    t.string   "isp"
+    t.string   "zip_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "prices", force: true do |t|
     t.string   "name"
     t.float    "price"
@@ -147,8 +160,8 @@ ActiveRecord::Schema.define(version: 20140212021902) do
     t.string   "password_digest"
     t.string   "business_password"
     t.string   "business_password_digest"
-    t.float    "credit"
-    t.float    "commission"
+    t.float    "credit",                   default: 0.0
+    t.float    "commission",               default: 0.0
     t.string   "role"
     t.integer  "company_id"
     t.integer  "staff_id"
