@@ -31,14 +31,13 @@
         td= w.name
         td= w.day_limit
         td= w.priority
-        td= w.channel.name
+        td= w.channel_id
         td= w.business
         -if w.status == 0
           td: a href="#{update_status_admin_workid_path w}" data-remote="true" data-method="post" data-disable-with="操作中..." 关闭
         -else
           td: a href="#{update_status_admin_workid_path w}" data-remote="true" data-method="post" data-disable-with="操作中..." 开启
         td: a href="#{admin_workid_path w}" data-remote="true" data-method="delete" data-disable-with="操作中..." 删除
-  = paginate @workids
 
 javascript:
  function getWorkids(){

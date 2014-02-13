@@ -1,5 +1,15 @@
 .centered
   -set_title '通道分组管理'
+  select id="area"
+    option value="" 请选择区域
+    option value="0" 全国
+  select id="operator" style="margin-left:20px"
+    option value="" 请选择运营商
+    option value="0" 移动
+    option value="1" 联通
+    option value="2" 电信
+  button type="button"  onclick="getChannelgroups()" style="margin-left:20px;margin-top:-10px" 查询
+  br
   button style="margin-left:20px" onclick="window.location.href='#{new_admin_channelgroup_path}'" 新增
   br
   table class="table table-hover"
@@ -31,3 +41,12 @@
         td= Channel.get_channelnames c.channels
         td: a href="#{admin_channelgroup_path c}" data-remote="true" data-method="delete" data-disable-with="操作中..." 删除
   //= paginate @channelgroups
+
+javascript:
+  function getChannelgroups(){
+    if($("#area").val() != "" && $("#operator").val() != ""){
+      window.location.href="/admin/channelgroups/area/"+$("#area").val()+"/operator/"+$("#operator").val();
+    }else{
+      alert("请选择区域以及营运商！");
+    }
+  }

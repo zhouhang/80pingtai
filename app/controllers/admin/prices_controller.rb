@@ -53,6 +53,12 @@ class Admin::PricesController < Admin::ApplicationController
     end
   end
 
+  def getByKeyword
+    @keyword = params[:keyword]
+    @prices = Price.where("name like  '%#{@keyword}%'").page(params[:page])
+    render 'index'
+  end
+
   private
   def price_params
     params.require(:price).permit(:name, :price, :agent_price, :member_price, :status)

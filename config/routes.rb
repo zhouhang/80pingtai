@@ -56,18 +56,22 @@ Sample::Application.routes.draw do
 
   namespace :admin do
     resources :users
+    match 'channels/query',  to: 'channels#getByCondition',:via => [:get]
+    match 'channels/get_provinces_cites',  to: 'channels#get_provinces_cities',:via => [:get,:post]
     resources :channels do
       member do
         post :update_status
       end
     end
-    match 'channles/get_provinces_cites',  to: 'channels#get_provinces_cities',:via => [:get,:post]
     resources :channelgroups
+    match "channelgroups/area/:areaid/operator/:operator_id" => "channelgroups#getByAreaOperator",:via => [:get,:post]
     resources :prices do
       member do
         post :update_status
       end
     end
+    match "prices/keyword/:keyword" => "prices#getByKeyword",:via => [:get,:post]
+    match 'workids/query',  to: 'workids#getByCondition',:via => [:get]
     resources :workids do
       member do
         post :update_status

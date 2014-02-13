@@ -3,6 +3,8 @@ class Admin::ChannelsController < Admin::ApplicationController
   before_filter :require_logined
   def index
     @channels = Channel.get_channels_display
+    @webapis = Webapi.all
+    @prices = Price.all
     @channels.each do |c|
       c.area = Channel.get_area_by_cid(c.area).join(",")
     end
@@ -49,6 +51,38 @@ class Admin::ChannelsController < Admin::ApplicationController
       format.html { redirect_to action:'index' }
       format.js { render :nothing => true, :status => 200, :content_type => 'text/html' }
     end
+  end
+
+  def getByCondition
+    keyword = params[:keyword]
+    interface = params[:interface]
+    price = params[:price]
+    status = params[:status]
+    sql = "select * from channels  where "
+    condition = [];
+    if !keyword.blank?
+      condition.push(" name like '%#{keyword}%'")
+    end
+    if !interface.blank?
+      condition.push(" webapi_id = #{interface}")
+    end
+    if !price.blank?
+      condition.push(" price_id = #{price}")
+    end
+    if !status.blank?
+      condition.push(" status = #{status}")
+    end
+    conditionStr = condition.join(" and ")
+    @channels = Channel.find_by_sql(sql+conditionStr)
+    @channels.each do |c|
+      c.area = Channel.get_area_by_cid(c.area).join(",")
+      @price = Price.find c.price_id
+      c.price_id = @price.name
+    end
+
+    @webapis = Webapi.all
+    @prices = Price.all
+    render 'query'
   end
 
   private

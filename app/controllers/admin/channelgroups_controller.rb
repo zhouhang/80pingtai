@@ -56,6 +56,19 @@ class Admin::ChannelgroupsController < Admin::ApplicationController
     end
   end
 
+  def getByAreaOperator
+    @areaid = params[:areaid]
+    @operator_id = params[:operator_id]
+    if params[:areaid] == "0"
+      @channelgroups = Channelgroup.where("operator_id = :operator_id",
+                                         { :operator_id => params[:operator_id]})
+    else
+      @channelgroups = Channelgroup.where("province_id = :province_id and operator_id = :operator_id",
+                                         { :province_id => params[:areaid], :operator_id => params[:operator_id]})
+    end
+    render 'index'
+  end
+
   def channelgroup_params
     params.require(:channelgroup).permit(:province_id, :city_id, :operator_id)
   end

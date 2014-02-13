@@ -1,5 +1,10 @@
 .centered
   -set_title '代理商充值价格管理'
+  p 产品名称：
+  input id="keyword"
+  button type="button"  onclick="getPrices()" style="margin-left:20px" 查询
+  br
+  br
   button style="margin-left:20px" onclick="window.location.href='#{new_admin_price_path}'" 新增
   br
   table class="table table-hover"
@@ -24,3 +29,12 @@
           td: a href="#{update_status_admin_price_path p}" data-remote="true" data-method="post" data-disable-with="操作中..." 开启
         td: a href="#{admin_price_path p}" data-remote="true" data-method="delete" data-disable-with="操作中..." 删除
   = paginate @prices
+
+  javascript:
+    function getPrices(){
+      if($("#keyword").val() != ""){
+        window.location.href="/admin/prices/keyword/"+$("#keyword").val();
+      }else{
+        alert("请输入产品名称！");
+      }
+    }
