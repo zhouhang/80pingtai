@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
     if self.business_password.blank?
       self.business_password = '666666'
     end
+  end
 
   def grant_fee total
     self.increment(:credit,total)

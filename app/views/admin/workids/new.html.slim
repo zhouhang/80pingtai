@@ -1,5 +1,5 @@
 .centered
-  h2 = t 'layouts.header.workid'
+  -set_title t'layouts.header.workid'
   = simple_form_for @workid, url:"/admin/workids", :html=>{:method=>:post} do |f|
       =f.input :name,label:'工号',reuqired:true
       =f.input :password,label:'登录密码',reuqired:true

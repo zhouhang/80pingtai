@@ -7,7 +7,7 @@ zh-CN:
     header:
       signup: "注册"
       signin: "登录"
-      changepwd: "修改登陆密码"
+      changepwd: "修改登陆密码和交易密码"
       submit: "提交"
       changebusinesspwd: "修改交易密码"
       product: "产品"

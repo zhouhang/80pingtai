@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140212021902) do
 
   create_table "channelgroups", force: true do |t|
@@ -29,9 +28,6 @@ ActiveRecord::Schema.define(version: 20140212021902) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-=======
-ActiveRecord::Schema.define(version: 20140210062459) do
->>>>>>> 82b49542ce246d0df600db284907a1720bfe766f
 
   create_table "channels", force: true do |t|
     t.string   "name"

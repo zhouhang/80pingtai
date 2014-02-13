@@ -25,12 +25,10 @@ Channel.create!(name:'本地湖北电信',area:'169,170,171,172,173,174,175,176,
 Channel.create!(name:'本地湖北移动',area:'169,170,171,172,173,174,175,176,177,178,179',operator_id:'0',denomination:'10,20,30,50,100,200,300,500',business:'1',status:'1',price_id:'1',webapi_id:'1')
 Price.create!(name:'湖北电信',price:'100',agent_price:'99',member_price:'98',status:'1')
 
-<<<<<<< HEAD
 #operator_id为运营商id，0移动，1联通，2电信
 Channelgroup.create!(province_id:5,city_id:16,operator_id:1)
 Channelgroupship.create!(channel_id:1,order:1,channelgroup_id:1)
 Channelgroupship.create!(channel_id:2,order:2,channelgroup_id:1)
-=======
 
 csv_text = File.read("#{Rails.root}/db/locations.csv")
 csv = CSV.parse(csv_text, :headers => true)
@@ -39,4 +37,3 @@ csv.each do |row|
   	Location.create!(row.to_hash)
 	end
 end
->>>>>>> 82b49542ce246d0df600db284907a1720bfe766f

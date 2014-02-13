@@ -1,5 +1,5 @@
 .centered
-  h2 = t 'layouts.header.product'
+  -set_title t'layouts.header.product'
   - if flash[:error]
     <div data-alert class="alert-box alert radius">
       = flash[:error]
