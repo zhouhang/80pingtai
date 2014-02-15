@@ -15,8 +15,10 @@
       =f.input :area, :as => :hidden
       =f.button :submit, t('layouts.header.submit'), id:'submit'
 
-=javascript_include_tag "area"
+//=javascript_include_tag "area"
 javascript:
+  var data = '#{@channel.area}'.split(",");
+  getProvicesCities(data);
   $(".channel_remark").hide();
   $("input[name='channel[business]']").change(
   function() {
@@ -28,4 +30,14 @@ javascript:
       $(".channel_remark").hide();
       $("#channel_remark").hide();
     }
+  });
+
+  $("#submit").click(function(e){
+      var s=$("#tree").getCheckedNodes();
+      if(s !=null){
+          $("#channel_area").val(s.join(",").replace("province,",""));
+          //alert($("#channel_area").val());
+      }else{
+          //alert("NULL");
+      }
   });

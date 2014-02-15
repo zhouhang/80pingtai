@@ -26,7 +26,7 @@ class Admin::ChannelsController < Admin::ApplicationController
   end
 
   def get_provinces_cities
-    @cities = City.get_province_cities
+    @cities = City.get_province_cities params[:cityids]
     respond_with do |format|
       format.json { render :json => {'data' => [@cities]} }
     end

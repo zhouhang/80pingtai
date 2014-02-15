@@ -16,14 +16,23 @@ class City < ActiveRecord::Base
     @brothers ||= City.where("province_id = #{province_id}")
   end
 
-  def self.get_province_cities
+  def self.get_province_cities(cityids)
     @provinces = Province.find_by_sql("select provinces.id,provinces.name from provinces")
     @cities = Province.find_by_sql("select provinces.id as pid,provinces.name as pname,cities.id,cities.name from provinces left join cities on provinces.id = cities.province_id")
     arr = [];
+    provinceids = [];
     @provinces.each do |p|
       subarr = [];
       @cities.each do |c|
         if p.id == c.pid
+          if cityids.include?(c.id.to_s)
+            citycheckstate = 1
+            if !provinceids.include?(p.id)
+              provinceids.push(p.id)
+            end
+          else
+            citycheckstate = 0
+          end
           subarr.push({
           "id" => c.id.to_s,
           "text" => c.name,
@@ -31,7 +40,7 @@ class City < ActiveRecord::Base
           "showcheck" => true,
           "complete" => true,
           "isexpand" => false,
-          "checkstate" => 0,
+          "checkstate" => citycheckstate,
           "hasChildren" => false
           });
         end
@@ -42,8 +51,8 @@ class City < ActiveRecord::Base
     "value" => "province",
     "showcheck" => true,
     "complete" => true,
-    "isexpand" => false,
-    "checkstate" => 0,
+    "isexpand" => provinceids.include?(p.id)?true:false,
+    "checkstate" => provinceids.include?(p.id)?1:0,
     "hasChildren" => true,
     "ChildNodes" => subarr
     });
@@ -54,7 +63,7 @@ class City < ActiveRecord::Base
     "value" => "0",
     "showcheck" => true,
     "complete" => true,
-    "isexpand" => false,
+    "isexpand" => (provinceids.size != 0)?true:false,
     "checkstate" => 0,
     "hasChildren" => true,
     "ChildNodes" => arr
