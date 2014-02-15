@@ -16,6 +16,7 @@
         th 会员价格
         th 状态
         th 操作
+        th 删除
     tbody
     - @prices.each do |p|
       tr
@@ -27,6 +28,7 @@
           td: a href="#{update_status_admin_price_path p}" data-remote="true" data-method="post" data-disable-with="操作中..." 关闭
         -else
           td: a href="#{update_status_admin_price_path p}" data-remote="true" data-method="post" data-disable-with="操作中..." 开启
+        td: a href="#{edit_admin_price_path p}" 编辑
         td: a href="#{admin_price_path p}" data-remote="true" data-method="delete" data-disable-with="操作中..." 删除
   = paginate @prices
 

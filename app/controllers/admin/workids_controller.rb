@@ -72,6 +72,18 @@ class Admin::WorkidsController < Admin::ApplicationController
     render 'query'
   end
 
+  def edit
+    @workid = Workid.find params[:id]
+  end
+
+  def update
+    if  Workid.find(params[:id]).update(workid_params)
+      redirect_to action:'index'
+    else
+      render edit_admin_workid_path
+    end
+  end
+
   private
   def workid_params
     params.require(:workid).permit(:name, :password, :business_password,:day_limit, :ext1, :ext2, :priority, :agent, :channel_id, :business => [])

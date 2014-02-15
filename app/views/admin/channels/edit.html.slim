@@ -1,0 +1,31 @@
+.centered
+  -set_title t'layouts.header.channel'
+  = simple_form_for @channel,url:admin_channel_path  do |f|
+      =f.input :name,label:'通道名称'
+      =f.input :price_id,label:'挂接产品',collection: Channel.get_prices
+      div class="control-group string optional channel_name"
+        label class="string optional control-label"  for="channel_price" 区域选择
+        div class="controls"
+          div id="tree" class="bbit-tree"
+      =f.input :webapi_id,label:'接口',collection: Channel.get_webapi
+      =f.input :denomination,label:'可充值面额'
+      =f.input :operator_id,label:'运营商',as: :select, collection:[['移动','0'],['联通','1'],['电信','2']]
+      =f.input :business,label:'相关业务',as: :radio_buttons,collection: [['无',0],['允许充正',1]],priority: [ 0 ]
+      =f.input :remark,label:"备注", input_html:{style: 'display:none'}
+      =f.input :area, :as => :hidden
+      =f.button :submit, t('layouts.header.submit'), id:'submit'
+
+=javascript_include_tag "area"
+javascript:
+  $(".channel_remark").hide();
+  $("input[name='channel[business]']").change(
+  function() {
+    if($(this).val() == 1){
+      $(".channel_remark").show();
+      $("#channel_remark").show();
+    }else{
+      $("#channel_remark").val("");
+      $(".channel_remark").hide();
+      $("#channel_remark").hide();
+    }
+  });

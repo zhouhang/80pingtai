@@ -57,7 +57,7 @@ Sample::Application.routes.draw do
   namespace :admin do
     resources :users
     match 'channels/query',  to: 'channels#getByCondition',:via => [:get]
-    match 'channels/get_provinces_cites',  to: 'channels#get_provinces_cities',:via => [:get,:post]
+    match 'channles/get_provinces_cites',  to: 'channels#get_provinces_cities',:via => [:get, :post]
     resources :channels do
       member do
         post :update_status

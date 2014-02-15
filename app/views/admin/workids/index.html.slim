@@ -25,6 +25,7 @@
         th 相关业务
         th 状态
         th 操作
+        th 删除
     tbody
     - @workids.each do |w|
       tr
@@ -37,6 +38,7 @@
           td: a href="#{update_status_admin_workid_path w}" data-remote="true" data-method="post" data-disable-with="操作中..." 关闭
         -else
           td: a href="#{update_status_admin_workid_path w}" data-remote="true" data-method="post" data-disable-with="操作中..." 开启
+        td: a href="#{edit_admin_workid_path w}" 编辑
         td: a href="#{admin_workid_path w}" data-remote="true" data-method="delete" data-disable-with="操作中..." 删除
   = paginate @workids
 

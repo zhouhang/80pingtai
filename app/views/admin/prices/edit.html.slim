@@ -1,0 +1,9 @@
+.centered
+  -set_title t'layouts.header.product'
+  = simple_form_for @price, url:admin_price_path do |f|
+      =f.input :name,label:'产品',reuqired:true
+      =f.input :price,label:'面值',reuqired:true
+      =f.input :agent_price,label:'代理商价格',reuqired:true
+      =f.input :member_price,label:'会员价格',reuqired:true
+      =f.input :status, label:'状态',collection: [['开启',1],['关闭',0]],as: :radio_buttons,reuqired:true
+      =f.button :submit, t('layouts.header.submit')

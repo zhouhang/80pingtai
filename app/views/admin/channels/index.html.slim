@@ -30,6 +30,7 @@
         th 可充值区域
         th 状态
         th 操作
+        th 删除
     tbody
     - @channels.each do |c|
       tr
@@ -51,6 +52,7 @@
           td: a href="#{update_status_admin_channel_path c}" data-remote="true" data-method="post" data-disable-with="操作中..." 关闭
         -else
           td: a href="#{update_status_admin_channel_path c}" data-remote="true" data-method="post" data-disable-with="操作中..." 开启
+        td: a href="#{edit_admin_channel_path c}" 编辑
         td: a href="#{admin_channel_path c}" data-remote="true" data-method="delete" data-disable-with="操作中..." 删除
   //= paginate @channels
 

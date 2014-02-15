@@ -59,6 +59,18 @@ class Admin::PricesController < Admin::ApplicationController
     render 'index'
   end
 
+  def edit
+    @price = Price.find params[:id]
+  end
+
+  def update
+    if  Price.find(params[:id]).update(price_params)
+      redirect_to action:'index'
+    else
+      render edit_admin_price_path
+    end
+  end
+
   private
   def price_params
     params.require(:price).permit(:name, :price, :agent_price, :member_price, :status)

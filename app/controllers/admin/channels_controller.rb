@@ -7,6 +7,8 @@ class Admin::ChannelsController < Admin::ApplicationController
     @prices = Price.all
     @channels.each do |c|
       c.area = Channel.get_area_by_cid(c.area).join(",")
+      price = Price.find c.price_id
+      c.pname = price.name
     end
   end
 
@@ -83,6 +85,18 @@ class Admin::ChannelsController < Admin::ApplicationController
     @webapis = Webapi.all
     @prices = Price.all
     render 'query'
+  end
+
+  def edit
+    @channel = Channel.find params[:id]
+  end
+
+  def update
+    if  Channel.find(params[:id]).update(channel_params)
+      redirect_to action:'index'
+    else
+      render edit_admin_channel_path
+    end
   end
 
   private
