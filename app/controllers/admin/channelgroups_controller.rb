@@ -18,10 +18,7 @@ class Admin::ChannelgroupsController < Admin::ApplicationController
 
   def edit
     @channelgroup = Channelgroup.find params[:id]
-    @channels = Channel.find_by_sql("SELECT c.id, c.name, cgs.id as cgsid, cgs.order FROM channels c left join channelgroupships cgs on c.id = cgs.channel_id and c.operator_id = #{@channelgroup.operator_id} order by cgs.order desc")
-    @channels.each do |c|
-      c.order
-    end
+    @channels = Channel.find_by_sql("SELECT c.id, c.name, cgs.id as cgsid, cgs.order FROM channels c left join channelgroupships cgs on c.id = cgs.channel_id and cgs.channelgroup_id = #{@channelgroup.id} order by cgs.order desc")
   end
 
   def update
