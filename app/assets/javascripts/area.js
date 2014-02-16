@@ -53,7 +53,7 @@ function getProvicesCities(cityids){
             type: "post",
             data:data,
             dataType:"json",
-            url: "/admin/channles/get_provinces_cites",
+            url: "/admin/channels/get_provinces_cites",
             success: function(data, textStatus){
                 var treedata = data.data;
                 var o = { showcheck: true};

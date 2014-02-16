@@ -8,6 +8,6 @@
       =f.input :day_limit,label:'日限额',reuqired:true
       =f.input :ext1,label:'扩展字段1',reuqired:true
       =f.input :ext2,label:'扩展字段2',reuqired:true
-      =f.input :business, label:'相关业务',collection: [['支持支付',1],['支持查询',0]],as: :check_boxes,reuqired:true
+      =f.input :business, label:'相关业务',collection: [['支持支付',1],['支持查询',0]],as: :check_boxes,:checked => @workid.business,reuqired:true
       =f.input :channel_id, label:'通道绑定',collection: Channel.select(:name,:id).to_a,reuqired:true
       =f.button :submit, t('layouts.header.submit')

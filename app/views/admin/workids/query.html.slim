@@ -31,8 +31,8 @@
         td= w.name
         td= w.day_limit
         td= w.priority
-        td= w.channel_id
-        td= w.business
+        td= w.channel.name
+        td= Workid.getBusiness w.business
         -if w.status == 0
           td: a href="#{update_status_admin_workid_path w}" data-remote="true" data-method="post" data-disable-with="操作中..." 关闭
         -else

@@ -78,8 +78,6 @@ class Admin::ChannelsController < Admin::ApplicationController
     @channels = Channel.find_by_sql(sql+conditionStr)
     @channels.each do |c|
       c.area = Channel.get_area_by_cid(c.area).join(",")
-      @price = Price.find c.price_id
-      c.price_id = @price.name
     end
 
     @webapis = Webapi.all

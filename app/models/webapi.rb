@@ -1,3 +1,3 @@
 class Webapi < ActiveRecord::Base
-  belongs_to :chanel
+  has_many :chanel
 end

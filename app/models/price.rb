@@ -1,3 +1,3 @@
 class Price < ActiveRecord::Base
-  belongs_to :channel
+  has_many :price
 end

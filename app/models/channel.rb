@@ -1,6 +1,6 @@
 class Channel < ActiveRecord::Base
-  has_one :price
-  has_one :webapi
+  belongs_to :price
+  belongs_to :webapi
   has_many :workid
 
   has_many :channelgroupships

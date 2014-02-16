@@ -34,7 +34,7 @@
     - @channels.each do |c|
       tr
         td= c.name
-        td= c.price_id
+        td= c.price.name
         td= c.denomination
         -if c.operator_id == 0
           td  移动

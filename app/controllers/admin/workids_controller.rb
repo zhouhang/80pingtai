@@ -50,7 +50,7 @@ class Admin::WorkidsController < Admin::ApplicationController
     keyword = params[:keyword]
     channel = params[:channel]
     status = params[:status]
-    sql = "select * from workids where"
+    #sql = "select * from workids where"
     condition = [];
     if !keyword.blank?
       condition.push(" name like '%#{keyword}%'")
@@ -62,11 +62,7 @@ class Admin::WorkidsController < Admin::ApplicationController
       condition.push(" status = #{status}")
     end
     conditionStr = condition.join(" and ")
-    @workids = Channel.find_by_sql(sql+conditionStr)
-    @workids.each do |w|
-      @channel = Channel.find w.channel_id
-      w.channel_id = @channel.name
-    end
+    @workids = Workid.where(conditionStr)
 
     @channels = Channel.all
     render 'query'
