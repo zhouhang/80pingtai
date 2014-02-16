@@ -6,6 +6,7 @@ class Channel < ActiveRecord::Base
   has_many :channelgroupships
   has_many :channelgroups, :through => :channelgroupships
 
+
   def self.get_prices
     @prices = Price.select(:name, :id).to_a
   end
@@ -37,6 +38,10 @@ class Channel < ActiveRecord::Base
       channelnames += cn.name+","
     end
     channelnames
+  end
+
+  def workid_capable?(total)
+    workid.day_limit - total >= Phone.where("workid_id = ? and DATE(created_at) = ?", workid.id, Date.today).sum(:total) 
   end
 
 end

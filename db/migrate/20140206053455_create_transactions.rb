@@ -6,7 +6,11 @@ class CreateTransactions < ActiveRecord::Migration
       t.float   :fee
       t.float   :total
       t.string  :status
+      
       t.references :user
+      t.references :price
+      t.references :channel
+      t.references :workid
       t.timestamps
     end
   end

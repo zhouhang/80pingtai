@@ -145,6 +145,9 @@ ActiveRecord::Schema.define(version: 20140212021902) do
     t.float    "total"
     t.string   "status"
     t.integer  "user_id"
+    t.integer  "price_id"
+    t.integer  "channel_id"
+    t.integer  "workid_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -177,7 +180,7 @@ ActiveRecord::Schema.define(version: 20140212021902) do
     t.string   "password"
     t.string   "business_password"
     t.integer  "priority"
-    t.string   "day_limit"
+    t.float    "day_limit"
     t.string   "ext1"
     t.string   "ext2"
     t.string   "business"

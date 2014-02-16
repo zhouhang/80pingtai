@@ -39,6 +39,15 @@ $(function(){
             });
         }
     });
+
+  $(document).on('ready page:load', function () {
+    $('#phone_obj').on('change',function(e){
+      $.get( "/locations/search?number="+e.target.value, function( data ) {
+        $('#phone_location').val(data.city+' '+ data.isp)
+      });
+    });
+  });
+
 });
 /*
 

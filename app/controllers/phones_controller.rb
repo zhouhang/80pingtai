@@ -19,18 +19,13 @@ class PhonesController < ApplicationController
       render action: "new" and return
     end
 
-    #todo find channel,calculate price and fee,grand fee to user
-    #l =location.find(:number,phone_params[:obj])
-    #c = channels.find_by_location l 
-    #c = c.sort_by_priority.first
-    #current_user.grant_fee (c.price - c.price.agent_price)
-    #c.workids.avaiable means status == 1
-    # c.workids.avaiable.sort_by_priority.each |w| do
-      # adjust day_limit
-    # end
-    #auth buz password
+    if(@phone.total > current_user.credit)
+      @phone.errors.add(:business_password, '账户余额不足')
+      render action: "new" and return
+    end
+
     @phone.user= current_user
-    if @phone.save
+    if @phone.save and @phone.recharge
       redirect_to action:'index'
     else
       render action: "new"

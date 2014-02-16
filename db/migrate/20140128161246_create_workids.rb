@@ -5,7 +5,7 @@ class CreateWorkids < ActiveRecord::Migration
       t.string :password
       t.string :business_password
       t.integer :priority
-      t.string :day_limit
+      t.float :day_limit
       t.string :ext1
       t.string :ext2
       t.string :business

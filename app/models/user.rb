@@ -42,8 +42,19 @@ class User < ActiveRecord::Base
     end
   end
 
+  def grant_commission total
+    self.increment(:commission,total)
+    self.save
+  end
+
   def grant_fee total
     self.increment(:credit,total)
+    self.save
+  end
+
+  def use price
+    self.increment(:credit,-price.price)
+    self.increment(:commission,price.price-price.agent_price)
     self.save
   end
 
