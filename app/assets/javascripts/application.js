@@ -27,6 +27,9 @@ $(function(){
         if(!self.data('region-target-kalss')) return
         $id = self.attr('id');
         $targetDom = $('#' + $id.substring(0,$id.lastIndexOf('_')+1)+self.data('region-target-kalss'));
+        if ($targetDom.size() <= 0) {
+            $targetDom = $('#' + $id.replace("province",self.data('region-target-kalss')));
+        }
 
         if ($targetDom.size() > 0) {
             $.getJSON('/china_region_fu/fetch_options', {klass: self.data('region-target-kalss'), parent_klass: self.data('region-klass'), parent_id: self.val()}, function(data) {
@@ -37,6 +40,8 @@ $(function(){
                 });
                 $targetDom.append(options.join(''));
             });
+        } else {
+
         }
     });
 

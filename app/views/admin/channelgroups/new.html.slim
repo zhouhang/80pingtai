@@ -1,8 +1,8 @@
 .centered
   -set_title t'layouts.header.channelgroup'
   = simple_form_for @channelgroup, url:"/admin/channelgroups", :html=>{:method=>:post} do |f|
-      =f.input :province_id,label:'选择省份', as: :region, collection: Province.select('id, name'), sub_region: :city,reuqired:true
-      =f.input :city_id,label:'选择城市', as: :region,reuqired:true
+      =f.input :province,label:'选择省份', as: :region, collection: Province.select('id, name'), sub_region: :city,reuqired:true
+      =f.input :city,label:'选择城市', as: :region,reuqired:true
       =f.input :operator_id,label:'选择代理商',as: :select, collection:[['移动','0'],['联通','1'],['电信','2']],reuqired:true
 
       =f.button :submit, t('layouts.header.submit')
