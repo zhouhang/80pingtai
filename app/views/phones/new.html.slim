@@ -3,6 +3,14 @@
   = simple_form_for @phone do |f|
     = f.input :obj
     = f.input :location, input_html: {value: '',disabled:true}
-    = f.input :total
+    = f.input :total,input_html:{readonly:"readonly"}
+    <div class="control-group float optional phone_total hide" id="money_button">
+    <label class="float optional control-label" for="phone_total">快捷金额</label>
+    <div class="controls">
+    <button class="btn">Left</button>
+    <button class="btn">Middle</button>
+    <button class="btn">Right</button>
+    </div>
+    </div>
     = f.input :business_password, input_html:{value:''},label:'交易密码'
     =f.button :wrapped, '缴费'

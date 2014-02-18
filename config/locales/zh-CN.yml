@@ -1,4 +1,9 @@
-zh-CN:
+
+
+zh-CN:  
+  time:
+    formats:
+      full: "%Y-%m-%d %H:%M:%S"
   en: "英文"
   zh-CN: "简体中文"
   project: "80平台"

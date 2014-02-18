@@ -1,7 +1,7 @@
 class Channel < ActiveRecord::Base
   belongs_to :price
   belongs_to :webapi
-  has_many :workid
+  has_one :workid
 
   has_many :channelgroupships
   has_many :channelgroups, :through => :channelgroupships
@@ -42,6 +42,10 @@ class Channel < ActiveRecord::Base
 
   def workid_capable?(total)
     workid.day_limit - total >= Phone.where("workid_id = ? and DATE(created_at) = ?", workid.id, Date.today).sum(:total) 
+  end
+
+  def denominations
+    denomination.blank? ? '10,20,30,50,100,200,300,500,任意充': denomination
   end
 
 end

@@ -16,7 +16,7 @@ class Transaction < ActiveRecord::Base
     record = true
       while record
         random = "#{Date.today.year-2012}#{Array.new(8){rand(10)}.join}"
-        record = where(:number => random).first
+        record = self.class.where(:number => random).first
       end
       self.number = random if self.number.blank?
       self.number

@@ -38,7 +38,7 @@ class Channelgroup < ActiveRecord::Base
     return a if a.present? 
   end
 
-  def valid_channel(total)
+  def valid_channel(total=0)
     _channels = channelgroupships.order(order: :asc).inject([]){|r,c|r << c.channel}
     _channels.select{|c|c.status == 1 and c.workid_capable?(total)}.first
   end

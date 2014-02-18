@@ -25,6 +25,7 @@ class PhonesController < ApplicationController
     end
 
     @phone.user= current_user
+    @phone.channel= Channel.find params[:phone][:channel_id]
     if @phone.recharge
       redirect_to action:'index'
     else
