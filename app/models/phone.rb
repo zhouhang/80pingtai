@@ -13,7 +13,7 @@ class Phone < Transaction
     channel = channel_group.valid_channel(total)
     # instance_eval("#{channel.webapi.pingyin}.new.send",{})
 
-    #deduct user credit and grant commi
+    #deduct user credit and grant commission
     Phone.transaction do
       self.user.use channel.price
       self.fee = channel.price.price - channel.price.agent_price
@@ -21,9 +21,9 @@ class Phone < Transaction
       self.price = channel.price
       self.workid = channel.workid
       self.status = 'completed'
-      self.save
+      self.save!
     end
-    # channel= Channel.where("status = '1' and area like ? ","%,#{city.id},%").order("created_at ASC").first
+
   end
 
 end

@@ -25,7 +25,7 @@ class PhonesController < ApplicationController
     end
 
     @phone.user= current_user
-    if @phone.save and @phone.recharge
+    if @phone.recharge
       redirect_to action:'index'
     else
       render action: "new"

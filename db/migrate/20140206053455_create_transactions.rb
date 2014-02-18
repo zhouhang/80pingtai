@@ -6,6 +6,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.float   :fee
       t.float   :total
       t.string  :status
+      t.string  :number
       
       t.references :user
       t.references :price
