@@ -42,10 +42,33 @@ class ChargesController < ApplicationController
     end
   end
 
+  def get_charge_money
+    charge_total = params[:charge_total]
+    result = get_charge(charge_total, 0)
+    respond_with do |format|
+      format.json { render :json => {'data' => result} }
+    end
+  end
+
+  def get_charge(charge_total, time)
+    if time <= 3
+      num = rand(99) * 0.1
+      total = num + Integer(charge_total)
+      charge = Charge.where(:total => total)
+      if charge.size == 0
+        total
+      else
+        get_charge_money(charge_total, time)
+      end
+    else
+      "操作失败,请稍后再试"
+    end
+  end
+
   private
 
   def charge_params
-    params.require(:charge).permit(:total,:total_confirmation,:desc,:pay_method)
+    params.require(:charge).permit(:total,:desc,:pay_method)
   end
 
 

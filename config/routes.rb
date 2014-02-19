@@ -94,6 +94,7 @@ Sample::Application.routes.draw do
     get 'qianxing', to: 'notify#qianxing'
   end
 
+  match 'charges/get_charge_money',  to: 'charges#get_charge_money',:via => [:get, :post]
   resources :charges do
     member do
       post :cancel
