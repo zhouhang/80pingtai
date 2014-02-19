@@ -1,8 +1,44 @@
 .centered
   -set_title '充值'
   = simple_form_for @charge do |f|
-      = f.input :total
-      = f.input :total_confirmation,required: true
+      = f.input :total,required: true
       = f.input :pay_method, collection:Charge.pay_method_selector,  selected: :first
       = f.input :desc, as: :text,placeholder:'*请填入存款地址,流水号,存款时间等详细信息'
-      = f.button :wrapped, '充值'
+      = f.button :wrapped, '充值', id:'submitCharge'
+
+javascript:
+  $("#submitCharge").click(function(){
+    var charge_total = parseInt($("#charge_total").val());
+    if(isNaN(charge_total)){
+      alert("必须为数字");
+      return false;
+    }
+    var data = {
+        "charge_total":charge_total
+    }
+    $.ajax({
+        type: "post",
+        data:data,
+        dataType:"json",
+        url: "/charges/get_charge_money",
+        success: function(data, textStatus){
+            var money = parseFloat(data.data);
+            if(isNaN(money)){
+              alert(money);
+            }else{
+              if(confirm("您的充值金额是"+money)){
+                $("#charge_total").val(money);
+                $("#new_charge").submit();
+              }
+            }
+        },
+        complete: function(XMLHttpRequest, textStatus){
+            //HideLoading();
+            //alert("complete"+textStatus);
+        },
+        error: function(){
+            //请求出错处理
+        }
+    });
+    return false;
+  });

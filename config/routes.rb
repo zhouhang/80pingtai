@@ -90,7 +90,7 @@ Sample::Application.routes.draw do
   end
 
   resources :users, :phones
-
+  match 'charges/get_charge_money',  to: 'charges#get_charge_money',:via => [:get, :post]
   resources :charges do
     member do
       post :cancel

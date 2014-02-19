@@ -1,7 +1,5 @@
 class Charge < ActiveRecord::Base
 
-  attr_reader :total_confirmation
-
   belongs_to :user
   #validates :pay_method,presence: true,
   #:inclusion => {in: %w(abc icbc ccb tenpay),:message => I18n.t('errors.messages.pay_method_invalid')}
@@ -9,9 +7,6 @@ class Charge < ActiveRecord::Base
 
   before_create do
     self.status='awaiting'
-  end
-  def total_confirmation=(val)
-    @total_confirmation = val.to_f
   end
 
   ACCOUNTS = [
