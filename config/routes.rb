@@ -90,6 +90,9 @@ Sample::Application.routes.draw do
   end
 
   resources :users, :phones
+  scope 'notify', :as => 'notify' do
+    get 'qianxing', to: 'notify#qianxing'
+  end
 
   resources :charges do
     member do
@@ -98,6 +101,7 @@ Sample::Application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
   match 'locations/search', to: 'locations#search', :via => [:get]
+  match 'locations/query', to: 'locations#query', :via => [:get]
   match '/signup',  to: 'users#new',:via => [:get]
   match '/signin',  to: 'sessions#new',:via => [:get,:post]
   match '/signout', to: 'sessions#destroy', :via =>[:delete,:get]

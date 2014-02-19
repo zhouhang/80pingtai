@@ -16,6 +16,11 @@ class LocationsController < ApplicationController
     render json: {location: location, channel: channel}
   end
 
+  def query
+    location = Location.find_by_number(params[:number].slice(0,7))
+    render json: Object.const_get(location.isp_to_pinyin.camelize).new().query(params[:number])
+  end
+
   private
 
 end

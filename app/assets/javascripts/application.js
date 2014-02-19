@@ -49,31 +49,47 @@ $(function(){
 
     $('#money_button .controls').on('click','a',function(e){
         if($.isNumeric($(e.target).text())) {
-            $('#phone_total').val($(e.target).text())
+            $('#phone_total').val($(e.target).text());
         }
         else{
-            $('#phone_total').attr('readonly',false).val('').focus()
+            $('#phone_total').attr('readonly',false).val('').focus();
         }
-
     })
 
-    $('#phone_obj').on('change',function(e){
-        $('#money_button').addClass('hide')
+    if($('#phone_obj').size()>0){
+        var query_button = $('<a class="btn">').text('查询');
+        $('#phone_obj').parent().append(query_button);
+        query_button.on('click',function(e){
+        $('#phone_info').addClass('hide');
+        $('#phone_info .controls').empty();
+            $.get( "/locations/query?number="+$('#phone_obj').val(), function( data ) {
+                if(typeof data != 'string'){
+                    $('#phone_info .controls').empty();
+                    $('#phone_info .controls').append($('<span>').addClass('alert alert-success').text("姓名:"+data.name))
+                    $('#phone_info .controls').append($('<span>').addClass('alert alert-success').text("余额:"+data.balance))
+                    $('#phone_info').removeClass('hide')
+                }
+            });    
+        })
+    }
+
+  /*  $('#phone_obj').on('change',function(e){
+        $('#money_button').addClass('hide');
       $.get( "/locations/search?number="+e.target.value, function( data ) {
         if(typeof data != 'string'){
-            $('#phone_location').val(data.location.city+' '+ data.location.isp)
+            $('#phone_location').val(data.location.city+' '+ data.location.isp);
             $('#money_button').removeClass('hide')
-            denominations = data.channel.denomination.split(',')
-            $('#phone_total').attr('readonly',true).val('')
-            $('#money_button .controls').empty()
+            denominations = data.channel.denomination.split(',');
+            $('#phone_total').attr('readonly',true).val('');
+            $('#money_button .controls').empty();
             for (d in denominations){
-                $('#money_button .controls').append($('<a class="btn">').val(denominations[d]).text(denominations[d]))
+                $('#money_button .controls').append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
             }
-            $('#money_button .controls').append($('<input type="hidden" name="phone[channel_id]">').val(data.channel.id))
+            $('#money_button .controls').append($('<input type="hidden" name="phone[channel_id]">').val(data.channel.id));
             // $('#money_button .controls')
         }
       });
-    });
+    });*/
   });
 
 });

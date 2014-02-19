@@ -12,7 +12,8 @@ class Phone < Transaction
       self.workid = channel.workid
       self.status = 'completed'
       self.save!
-      Object.const_get(channel.webapi.pinyin.capitalize).new().tel_recharge({number:number,obj:obj,total:total,denomination:channel.denominations})
+      #capitalize
+      Object.const_get(channel.webapi.pinyin.camelize).new().tel_recharge({number:number,obj:obj,total:total.to_i,denomination:channel.denominations})
     end
 
   end
