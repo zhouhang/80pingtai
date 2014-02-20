@@ -75,17 +75,23 @@ $(function(){
 
     $('#phone_obj').on('change',function(e){
         $('#money_button').addClass('hide');
+        $('#remark_div').addClass('hide');
+        $('#phone_location').val('');
+        $('#phone_total').attr('readonly',true).val('');
+        $('#phone_remark').val('');
       $.get( "/locations/search?number="+e.target.value, function( data ) {
         if(typeof data != 'string'){
             $('#phone_location').val(data.location.city+' '+ data.location.isp);
             $('#money_button').removeClass('hide')
             denominations = data.channel.denomination.split(',');
-            $('#phone_total').attr('readonly',true).val('');
             $('#money_button .controls').empty();
             for (d in denominations){
                 $('#money_button .controls').append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
             }
             $('#money_button .controls').append($('<input type="hidden" name="phone[channel_id]">').val(data.channel.id));
+            if(data.channel.business=='1'){
+                $('#remark_div').removeClass('hide');
+            }
             // $('#money_button .controls')
         }
       });
