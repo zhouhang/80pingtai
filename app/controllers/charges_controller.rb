@@ -1,6 +1,7 @@
 class ChargesController < ApplicationController
   layout 'home'
   before_filter :require_logined
+  PAY_URL = 'https://gw.tenpay.com/gateway/pay.htm'
 
   def index
     @charges = Charge.page(params[:page])
@@ -43,7 +44,7 @@ class ChargesController < ApplicationController
   end
 
   def get_charge_money
-    charge_total = params[:charge_total]
+    charge_total = params[:total]
     result = get_charge(charge_total, 0)
     respond_with do |format|
       format.json { render :json => {'data' => result} }
@@ -63,6 +64,39 @@ class ChargesController < ApplicationController
     else
       "操作失败,请稍后再试"
     end
+  end
+
+  def get_tenpay_url
+    @charge = Charge.new( :total => params[:total], :desc => params[:desc], :pay_method => params[:pay_method] )
+    @charge.user= current_user
+    if @charge.save
+      paramsTen = {}
+      paramsTen[:partner] = '1215786801'
+      paramsTen[:input_charset] = 'GBK'
+      paramsTen[:desc] = params[:desc]
+      paramsTen[:return_url] = 'http://vhost:3000/charges/return'
+      paramsTen[:notify_url] = 'http://vhost:3000/charges/notify'
+      paramsTen[:out_trade_no] = Charge.last.id
+      paramsTen[:total_fee] = params[:total]
+      paramsTen[:fee_type] = '1'
+      paramsTen[:key] = ''
+      paramsTen[:spbill_create_ip] = request.remote_ip
+      paramsTen[:time_start] = Time.new.strftime("%Y%m%d%H%M%S")
+      paramsTen[:time_expire] = Time.new.strftime("%Y%m%d%H%M%S")
+      status = 'success'
+      url = "https://gw.tenpay.com/gateway/pay.htm?#{toStr paramsTen}"
+    else
+      status = 'fail'
+    end
+    respond_with do |format|
+      format.json { render :json => {'data' => {'status'=>status, 'url'=>url}} }
+    end
+  end
+
+  def toStr(params)
+    params[:sign] = Digest::MD5.hexdigest "input_charset=#{params[:input_charset]}&partner=#{params[:partner]}&total_fee=#{params[:total_fee]}&key=#{params[:key]}"
+    paramsArr = params.map { |k,v| "#{k}=#{v}" }
+    paramsStr = "#{PAY_URL}?#{paramsArr.join("&")}"
   end
 
   private

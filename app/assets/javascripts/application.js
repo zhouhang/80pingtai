@@ -73,7 +73,7 @@ $(function(){
         })
     }
 
-  /*  $('#phone_obj').on('change',function(e){
+    $('#phone_obj').on('change',function(e){
         $('#money_button').addClass('hide');
       $.get( "/locations/search?number="+e.target.value, function( data ) {
         if(typeof data != 'string'){
@@ -89,7 +89,7 @@ $(function(){
             // $('#money_button .controls')
         }
       });
-    });*/
+    });
   });
 
 });

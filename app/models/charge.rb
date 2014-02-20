@@ -12,7 +12,8 @@ class Charge < ActiveRecord::Base
   ACCOUNTS = [
       {abbr:'abc',full_name:'中国农业银行',owner:'刘军',account:'6228480058024461871'},
       {abbr:'icbc',full_name:'中国工商银行',owner:'刘军',account:'6222023202050348894'},
-      {abbr:'ccb',full_name:'中国建设银行',owner:'刘军',account:'6217002870009828334'}
+      {abbr:'ccb',full_name:'中国建设银行',owner:'刘军',account:'6217002870009828334'},
+      {abbr:'tenpay',full_name:'财付通',owner:'武汉雷骏风驰科技有限公司',account:'1215786801'}
   ]
 
   STATUS =[

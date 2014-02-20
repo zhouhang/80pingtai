@@ -95,6 +95,7 @@ Sample::Application.routes.draw do
   end
 
   match 'charges/get_charge_money',  to: 'charges#get_charge_money',:via => [:get, :post]
+  match 'charges/get_tenpay_url',  to: 'charges#get_tenpay_url',:via => [:get, :post]
   resources :charges do
     member do
       post :cancel

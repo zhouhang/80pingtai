@@ -19,7 +19,11 @@
 javascript:
   var data = '#{@channel.area}'.split(",");
   getProvicesCities(data);
-  $(".channel_remark").hide();
+  if('#{@channel.business}'!=1){
+    $(".channel_remark").hide();
+  }else{
+    $("#channel_remark").show();
+  }
   $("input[name='channel[business]']").change(
   function() {
     if($(this).val() == 1){

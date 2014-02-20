@@ -8,29 +8,66 @@
 
 javascript:
   $("#submitCharge").click(function(){
-    var charge_total = parseInt($("#charge_total").val());
-    if(isNaN(charge_total)){
+    var total = parseInt($("#charge_total").val());
+    var pay_method = $("#charge_pay_method").val();
+    var desc = $("#charge_desc").val();
+    if(isNaN(total)){
       alert("必须为数字");
       return false;
     }
     var data = {
-        "charge_total":charge_total
+        "total":total,
+        "pay_method":pay_method,
+        "desc":desc
+    };
+    if(pay_method=="tenpay"){
+      getTenpay(data);
+      return false;
+    }else{
+      $.ajax({
+          type: "post",
+          data:data,
+          dataType:"json",
+          url: "/charges/get_charge_money",
+          success: function(data, textStatus){
+              var money = parseFloat(data.data);
+              if(isNaN(money)){
+                alert(money);
+              }else{
+                if(confirm("您的充值金额是"+money)){
+                  $("#charge_total").val(money);
+                  $("#new_charge").submit();
+                }
+              }
+          },
+          complete: function(XMLHttpRequest, textStatus){
+              //HideLoading();
+              //alert("complete"+textStatus);
+          },
+          error: function(){
+              //请求出错处理
+          }
+      });
+    }
+    return false;
+  });
+
+  function getTenpay(data){
+    if(data.pay_method!="tenpay"){
+      alert("请选择财付通");
     }
     $.ajax({
         type: "post",
         data:data,
         dataType:"json",
-        url: "/charges/get_charge_money",
+        url: "/charges/get_tenpay_url",
         success: function(data, textStatus){
-            var money = parseFloat(data.data);
-            if(isNaN(money)){
-              alert(money);
-            }else{
-              if(confirm("您的充值金额是"+money)){
-                $("#charge_total").val(money);
-                $("#new_charge").submit();
-              }
-            }
+          if(data.data.status == "success"){
+            window.open(data.data.url, "_blank" ,"resizable:true");
+            $(".centered").replaceWith("如果未弹出对话框，请点击<a target='_blank' href='"+data.data.url+"'>到财付通继续支付</a>");
+          }else{
+            alert("获取失败");
+          }
         },
         complete: function(XMLHttpRequest, textStatus){
             //HideLoading();
@@ -40,5 +77,4 @@ javascript:
             //请求出错处理
         }
     });
-    return false;
-  });
+  }
