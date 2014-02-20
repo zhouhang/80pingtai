@@ -6,8 +6,8 @@ class Phone < Transaction
 	def recharge
     #deduct user credit and grant commission
     Phone.transaction do
-      self.user.use channel.price
       self.fee = self.total*(1-channel.price.rate).round(2) #channel.price.price - channel.price.agent_price
+      self.user.use self.total-self.fee,self.fee
       self.price = channel.price
       self.workid = channel.workid
       self.status = 'completed'

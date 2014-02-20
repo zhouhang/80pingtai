@@ -52,9 +52,9 @@ class User < ActiveRecord::Base
     self.save!
   end
 
-  def use price
-    self.increment(:credit,-price.price)
-    self.increment(:commission,price.price-price.agent_price)
+  def use total,fee
+    self.increment(:credit,-total)
+    self.increment(:commission,fee)
     self.save!
   end
 
