@@ -58,7 +58,7 @@ class PhonesController < ApplicationController
   private
 
   def phone_params
-    params.require(:phone).permit(:total,:obj)
+    params.require(:phone).permit(:total,:obj,:remark)
   end
 
 

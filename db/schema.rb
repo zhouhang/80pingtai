@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 20140212021902) do
     t.float    "total"
     t.string   "status"
     t.string   "number"
+    t.string   "remark"
     t.integer  "user_id"
     t.integer  "price_id"
     t.integer  "channel_id"

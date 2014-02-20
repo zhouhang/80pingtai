@@ -54,6 +54,7 @@ zh-CN:
         total: '缴费金额'
         obj:   '缴费号码'
         location: '号码归属'
+        remark:  '备注'
     errors:
       messages:
         invalid:  "无效"
