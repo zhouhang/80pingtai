@@ -6,6 +6,7 @@ class CreateFundslogs < ActiveRecord::Migration
       t.float :cur_money
       t.float :cur_commission
       t.references :staff
+      t.references :user
 
       t.timestamps
     end

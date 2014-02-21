@@ -4,6 +4,6 @@ class FundslogsController < ApplicationController
   before_filter :require_logined
 
   def index
-    @fundslogs = Fundslog.page(params[:page])
+    @fundslogs = Fundslog.where(:user_id => current_user.id).page(params[:page])
   end
 end

@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20140221053620) do
     t.float    "cur_money"
     t.float    "cur_commission"
     t.integer  "staff_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -155,6 +156,7 @@ ActiveRecord::Schema.define(version: 20140221053620) do
     t.float    "total"
     t.string   "status"
     t.string   "number"
+    t.string   "remark"
     t.integer  "user_id"
     t.integer  "price_id"
     t.integer  "channel_id"
