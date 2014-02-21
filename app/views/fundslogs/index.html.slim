@@ -14,7 +14,7 @@
     - @fundslogs.each do |f|
       tr
         td= f.id
-        td= l f.created_at, format: :full
+        td= f.created_at
         td= f.staff.login
         td= f.desc
         td= f.money
