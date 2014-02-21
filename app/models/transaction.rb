@@ -6,6 +6,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :user
 
   before_save :generate_number
+  after_save  :save_log
 
   def status_display
     a = STATUS.find { |s| s[:code] == status }
@@ -20,6 +21,10 @@ class Transaction < ActiveRecord::Base
       end
       self.number = random if self.number.blank?
       self.number
+  end
+
+  def save_log
+    Fundslog.create_for_transaction self
   end
 
 
