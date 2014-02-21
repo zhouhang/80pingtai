@@ -1,0 +1,23 @@
+.centered
+  -set_title '我的资金日志'
+  table class="table table-hover"
+    thead
+      tr
+        th 序号
+        th 日期
+        th 操作员
+        th 描述
+        th 金额
+        th 当前金额
+        th 当前佣金
+    tbody
+    - @fundslogs.each do |f|
+      tr
+        td= f.id
+        td= f.created_at
+        td= Fundslog.get_staff f.staff_id
+        td= f.desc
+        td= f.money
+        td= f.cur_money
+        td= f.cur_commission
+  = paginate @fundslogs

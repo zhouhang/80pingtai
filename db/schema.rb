@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140212021902) do
+ActiveRecord::Schema.define(version: 20140221053620) do
 
   create_table "channelgroups", force: true do |t|
     t.integer  "province_id"
@@ -98,6 +98,16 @@ ActiveRecord::Schema.define(version: 20140212021902) do
   add_index "districts", ["pinyin"], name: "index_districts_on_pinyin", using: :btree
   add_index "districts", ["pinyin_abbr"], name: "index_districts_on_pinyin_abbr", using: :btree
 
+  create_table "fundslogs", force: true do |t|
+    t.text     "desc"
+    t.float    "money"
+    t.float    "cur_money"
+    t.float    "cur_commission"
+    t.integer  "staff_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "locations", force: true do |t|
     t.string   "number"
     t.string   "city"
@@ -145,7 +155,6 @@ ActiveRecord::Schema.define(version: 20140212021902) do
     t.float    "total"
     t.string   "status"
     t.string   "number"
-    t.string   "remark"
     t.integer  "user_id"
     t.integer  "price_id"
     t.integer  "channel_id"

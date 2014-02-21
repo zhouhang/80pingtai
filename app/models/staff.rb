@@ -2,6 +2,8 @@ class Staff < ActiveRecord::Base
 
   attr_accessor :password_confirmation
 
+  has_many :fundslogs
+
   has_secure_password
   #has_many :users
 

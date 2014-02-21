@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  staff_id: 1
+  desc: MyText
+  money: 1.5
+  cur_money: 1.5
+  cur_commission: 1.5
+
+two:
+  staff_id: 1
+  desc: MyText
+  money: 1.5
+  cur_money: 1.5
+  cur_commission: 1.5

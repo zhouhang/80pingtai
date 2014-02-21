@@ -89,7 +89,7 @@ Sample::Application.routes.draw do
     root :to => 'users#index'
   end
 
-  resources :users, :phones
+  resources :users, :phones, :fundslogs
   scope 'notify', :as => 'notify' do
     get 'qianxing', to: 'notify#qianxing'
   end
