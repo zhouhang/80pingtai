@@ -37,7 +37,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 # gem 'mechanize'
 gem 'nokogiri'
-gem 'tesseract-ocr'
+#gem 'tesseract-ocr'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

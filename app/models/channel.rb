@@ -41,7 +41,7 @@ class Channel < ActiveRecord::Base
   end
 
   def workid_capable?(total)
-    workid.day_limit - total >= Phone.where("workid_id = ? and DATE(created_at) = ?", workid.id, Date.today).sum(:total) 
+    workid.day_limit - total >= Phone.where("workid_id = ? and DATE(created_at) = ?", workid.id, Date.today).sum(:total)
   end
 
   def denominations
