@@ -67,13 +67,13 @@ class ChargesController < ApplicationController
   end
 
   def get_tenpay_url
-    @charge = Charge.new( :total => params[:total], :desc => params[:desc], :pay_method => params[:pay_method] )
+    @charge = Charge.new( :total => params[:total], :remark => params[:remark], :pay_method => params[:pay_method] )
     @charge.user= current_user
     if @charge.save
       paramsTen = {}
       paramsTen[:partner] = '1215786801'
       paramsTen[:input_charset] = 'GBK'
-      paramsTen[:desc] = params[:desc]
+      paramsTen[:desc] = params[:remark]
       paramsTen[:return_url] = 'http://vhost:3000/charges/return'
       paramsTen[:notify_url] = 'http://vhost:3000/charges/notify'
       paramsTen[:out_trade_no] = Charge.last.id
@@ -102,7 +102,7 @@ class ChargesController < ApplicationController
   private
 
   def charge_params
-    params.require(:charge).permit(:total,:desc,:pay_method)
+    params.require(:charge).permit(:total,:remark,:pay_method)
   end
 
 

@@ -43,17 +43,6 @@ ActiveRecord::Schema.define(version: 20140221053620) do
     t.datetime "updated_at"
   end
 
-  create_table "charges", force: true do |t|
-    t.float    "total"
-    t.text     "desc"
-    t.string   "status"
-    t.string   "pay_method"
-    t.string   "feedback"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "cities", force: true do |t|
     t.string   "name"
     t.integer  "province_id"
@@ -105,6 +94,7 @@ ActiveRecord::Schema.define(version: 20140221053620) do
     t.float    "cur_commission"
     t.integer  "staff_id"
     t.integer  "user_id"
+    t.integer  "transaction_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -151,6 +141,8 @@ ActiveRecord::Schema.define(version: 20140221053620) do
 
   create_table "transactions", force: true do |t|
     t.string   "type"
+    t.string   "pay_method"
+    t.string   "feedback"
     t.string   "obj"
     t.float    "fee"
     t.float    "total"
@@ -161,6 +153,7 @@ ActiveRecord::Schema.define(version: 20140221053620) do
     t.integer  "price_id"
     t.integer  "channel_id"
     t.integer  "workid_id"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

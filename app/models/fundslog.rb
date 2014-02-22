@@ -1,6 +1,7 @@
 class Fundslog < ActiveRecord::Base
   belongs_to :staff
   belongs_to :user
+  belongs_to    :transaction
 
   def self.create_for_transaction tran
     self.create do |fund|
@@ -10,6 +11,7 @@ class Fundslog < ActiveRecord::Base
       fund.cur_commission = tran.user.commission
       fund.staff = tran.user.staff
       fund.user = tran.user
+      fund.transaction = tran
     end
   end
 

@@ -1,12 +1,20 @@
 class Transaction < ActiveRecord::Base
-	STATUS =[
-    {name:'等待处理',code:'awaiting'},
-    {name:'处理完成',code:'completed'}
+
+  STATUS =[
+      {name:'等待处理',code:'awaiting'},
+      {name:'处理完成',code:'completed'},
+      {name:'主动取消',code:'cancelled'}
   ]
+
   belongs_to :user
 
   before_save :generate_number
   after_save  :save_log
+
+  
+  scope :by_user, ->(u){
+    where(["user_id = ?",u.id])
+  }
 
   def status_display
     a = STATUS.find { |s| s[:code] == status }
@@ -24,7 +32,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def save_log
-    Fundslog.create_for_transaction self
+    Fundslog.create_for_transaction self if self.status == 'completed'
   end
 
 

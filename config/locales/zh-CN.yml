@@ -41,7 +41,7 @@ zh-CN:
         total: "金额"
         total_confirmation: '确认金额'
         pay_method: '支付方式'
-        desc: '备注'
+        remark: '备注'
       company:
         name: '单位名称'
         manager: '负责人'

@@ -22,7 +22,7 @@
         td= c.total
         td a
         td= c.created_at
-        td= c.desc
+        td= c.remark
         -if c.status == 'awaiting'
           td: a href="#{confirm_admin_charge_path c}" data-remote="true" data-method="post" data-disable-with="操作中..." 处理
         else

@@ -1,6 +1,7 @@
-class Charge < ActiveRecord::Base
+class Charge < Transaction
 
   belongs_to :user
+  belongs_to :staff
   #validates :pay_method,presence: true,
   #:inclusion => {in: %w(abc icbc ccb tenpay),:message => I18n.t('errors.messages.pay_method_invalid')}
   validates :total, presence: true, confirmation: true, numericality: {greater_than:0}
@@ -16,25 +17,18 @@ class Charge < ActiveRecord::Base
       {abbr:'tenpay',full_name:'财付通',owner:'武汉雷骏风驰科技有限公司',account:'1215786801'}
   ]
 
-  STATUS =[
-      {name:'等待处理',code:'awaiting'},
-      {name:'处理完成',code:'completed'},
-      {name:'主动取消',code:'cancelled'}
-  ]
-
-  scope :by_user, ->(u){
-    where(["user_id = ?",u.id])
-  }
-
-
   def cancel
     self.update_attribute(:status,'cancelled')
   end
 
-  def confirm
-    self.update_attributes({:status =>'completed'})
-    self.user.increment(:credit,self.total)
-    self.user.save
+  def confirm(admin)
+    Charge.transaction do
+      self.user.increment(:credit,self.total)
+      self.user.save
+      self.status ='completed'
+      self.staff = admin
+      self.save!
+    end
   end
 
   def self.pay_method_selector
@@ -56,11 +50,6 @@ class Charge < ActiveRecord::Base
   def pay_method_display_account
     a =ACCOUNTS.find {|a|a[:abbr] == self.pay_method}
     a[:account] if a.present?
-  end
-
-  def status_display
-    a = STATUS.find { |s| s[:code] == status }
-    a[:name] if a.present?
   end
 
 end
