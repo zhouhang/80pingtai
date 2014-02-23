@@ -85,9 +85,18 @@ $(function(){
             $('#money_button').removeClass('hide')
             denominations = data.channel.denomination.split(',');
             $('#money_button .controls').empty();
+            var small  = $('<span class="well">');//.append('小面值:')
+            var large = $('<span class="well">');//.append('大面值:')
             for (d in denominations){
-                $('#money_button .controls').append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
+                if(parseInt(denominations[d])>100){
+                    large.append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
+                }
+                else{
+                    small.append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
+                }
             }
+            $('#money_button .controls').append(small).append(large);
+
             $('#money_button .controls').append($('<input type="hidden" name="phone[channel_id]">').val(data.channel.id));
             if(data.channel.business=='1'){
                 $('#remark_div').removeClass('hide');
