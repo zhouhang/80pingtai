@@ -37,8 +37,6 @@ Channelgroupship.create!(channel_id:2,order:1,channelgroup_id:2)
 
 Location.create(:number => '1860715',:city => '湖北省武汉市',:isp =>'联通',:zip_code => '027')
 Location.create(:number => '1500278',:city => '湖北省武汉市',:isp =>'移动',:zip_code => '027')
-Location.create(:number => '1341969',:city => '湖北省武汉市',:isp =>'移动',:zip_code => '027')
-Location.create(:number => '1597148',:city => '湖北省武汉市',:isp =>'移动',:zip_code => '027')
 
 Fundslog.create( :user_id => 1, :staff_id => 1, :desc => 'desc', :money => 10.0, :cur_money => 20.0, :cur_commission => 5.0 )
 
