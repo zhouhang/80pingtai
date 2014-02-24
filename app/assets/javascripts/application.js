@@ -16,11 +16,19 @@
 //= require jquery_ujs
 //= require jquery.tree.js
 //= require bootstrap
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
 //= require_tree .
 
 
 
 $(function(){
+    $('.datepicker').datepicker({
+        format:     'yyyy-mm-dd',
+        autoclose:  true,
+        language:   'zh-CN'
+    });
+
     $('body').on('change', '.region_select', function(event) {
         var self, $targetDom;
         self = $(event.currentTarget);
