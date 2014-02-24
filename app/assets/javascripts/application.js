@@ -45,69 +45,69 @@ $(function(){
         }
     });
 
-  $(document).on('ready page:load', function () {
+    $(document).on('ready page:load', function () {
 
-    $('#money_button .controls').on('click','a',function(e){
-        if($.isNumeric($(e.target).text())) {
-            $('#phone_total').val($(e.target).text());
-        }
-        else{
-            $('#phone_total').attr('readonly',false).val('').focus();
-        }
-    })
-
-    if($('#phone_obj').size()>0){
-        var query_button = $('<a class="btn">').text('查询');
-        $('#phone_obj').parent().append(query_button);
-        query_button.on('click',function(e){
-        $('#phone_info').addClass('hide');
-        $('#phone_info .controls').empty();
-            $.get( "/locations/query?number="+$('#phone_obj').val(), function( data ) {
-                if(typeof data != 'string'){
-                    $('#phone_info .controls').empty();
-                    $('#phone_info .controls').append($('<span>').addClass('alert alert-success').text("姓名:"+data.name))
-                    $('#phone_info .controls').append($('<span>').addClass('alert alert-success').text("余额:"+data.balance))
-                    $('#phone_info').removeClass('hide')
-                }
-            });    
+        $('#money_button .controls').on('click','a',function(e){
+            if($.isNumeric($(e.target).text())) {
+                $('#phone_total').val($(e.target).text());
+            }
+            else{
+                $('#phone_total').attr('readonly',false).val('').focus();
+            }
         })
-    }
 
-    $('#phone_obj').on('change',function(e){
-        $('#money_button').addClass('hide');
-        $('#remark_div').addClass('hide');
-        $('#phone_location').val('');
-        $('#phone_total').attr('readonly',true).val('');
-        $('#phone_remark').val('');
-      $.get( "/locations/search?number="+e.target.value, function( data ) {
-        if(typeof data != 'string'){
-            $('#phone_location').val(data.location.city+' '+ data.location.isp);
-            $('#money_button').removeClass('hide')
-            denominations = data.channel.denomination.split(',');
-            $('#money_button .controls').empty();
-            var small  = $('<span class="well">');//.append('小面值:')
-            var large = $('<span class="well">');//.append('大面值:')
-            for (d in denominations){
-                if(parseInt(denominations[d])>100){
-                    large.append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
-                }
-                else{
-                    small.append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
-                }
-            }
-            $('#money_button .controls').append(small).append(large);
-
-            $('#money_button .controls').append($('<input type="hidden" name="phone[channel_id]">').val(data.channel.id));
-            if(data.channel.business=='1'){
-                $('#remark_div').removeClass('hide');
-            }
-            // $('#money_button .controls')
+        if($('#phone_obj').size()>0){
+            var query_button = $('<a class="btn">').text('查询');
+            $('#phone_obj').parent().append(query_button);
+            query_button.on('click',function(e){
+                $('#phone_info').addClass('hide');
+                $('#phone_info .controls').empty();
+                $.get( "/locations/query?number="+$('#phone_obj').val(), function( data ) {
+                    if(typeof data != 'string'){
+                        $('#phone_info .controls').empty();
+                        $('#phone_info .controls').append($('<span>').addClass('alert alert-success').text("姓名:"+data.name))
+                        $('#phone_info .controls').append($('<span>').addClass('alert alert-success').text("余额:"+data.balance))
+                        $('#phone_info').removeClass('hide')
+                    }
+                });
+            })
         }
-      });
+
+        $('#phone_obj').on('change',function(e){
+            $('#money_button').addClass('hide');
+            $('#remark_div').addClass('hide');
+            $('#phone_location').val('');
+            $('#phone_total').attr('readonly',true).val('');
+            $('#phone_remark').val('');
+            $.get( "/locations/search?number="+e.target.value, function( data ) {
+                if(typeof data != 'string'){
+                    $('#phone_location').val(data.location.city+' '+ data.location.isp);
+                    $('#money_button').removeClass('hide')
+                    denominations = data.channel.denomination.split(',');
+                    $('#money_button .controls').empty();
+                    var small  = $('<span class="well">');//.append('小面值:')
+                    var large = $('<span class="well">');//.append('大面值:')
+                    for (d in denominations){
+                        if(parseInt(denominations[d])>100){
+                            large.append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
+                        }
+                        else{
+                            small.append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
+                        }
+                    }
+                    $('#money_button .controls').append(small).append(large);
+
+                    $('#money_button .controls').append($('<input type="hidden" name="phone[channel_id]">').val(data.channel.id));
+                    if(data.channel.business=='1'){
+                        $('#remark_div').removeClass('hide');
+                    }
+                    // $('#money_button .controls')
+                }
+            });
+        });
     });
-  });
 
 });
 /*
-document.addEventListener("page:load", selector_onload);
-*/
+ document.addEventListener("page:load", selector_onload);
+ */
