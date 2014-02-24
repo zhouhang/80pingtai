@@ -1,0 +1,90 @@
+.centered
+  -set_title t 'layouts.header.commission_to_credit'
+  h4 说明：可以用来支付话费缴费\游戏缴费结算
+  = simple_nested_form_for  @user, url:"#", :html=>{:method=>:post} do |f|
+    <div class="control-group float optional" id="credit_title">
+    <label class="float optional control-label" for="credit">账户余额： ￥ </label>
+    <div class="controls" id="credit">#{current_user.credit}
+    </div>
+    </div>
+    <div class="control-group float optional" id="commission_title">
+    <label class="float optional control-label" for="commission">佣金余额余额： ￥ </label>
+    <div class="controls" id="commission">#{current_user.commission}
+    </div>
+    </div>
+    <div class="control-group float optional" id="account_label">
+    <label class="float optional control-label" for="account">转款账号：</label>
+    <div class="controls">
+        <input class="string optional" id="account" name="account" type="text" value="">
+    </div>
+    </div>
+    <div class="control-group float optional" id="money_title">
+    <label class="float optional control-label" for="money">转款金额：</label>
+    <div class="controls">
+        <input class="string optional" id="money" name="money" type="text" value="">
+    </div>
+    </div>
+    <div class="control-group float optional" id="business_password_title">
+    <label class="float optional control-label" for="business_password">财务密码：</label>
+    <div class="controls">
+        <input class="string optional" id="business_password" name="business_password" type="password" value="">
+    </div>
+    </div>
+    =f.button :submit, t('layouts.header.submit'), id:'submit'
+
+javascript:
+  $("#submit").click(function(){
+    var account = $("#account").val();
+    var money = parseInt($("#money").val());
+    var business_password = $("#business_password").val();
+    if(account == ""){
+      alert("请填写转账账号");
+      return false;
+    }
+    if(money == ""){
+      alert("请填写转款金额");
+      return false;
+    }
+    if(business_password == ""){
+      alert("请填写交易密码");
+      return false;
+    }
+    if(money<=0){
+      alert("输入金额必须大于0");
+      return false;
+    }
+    if(isNaN(money)){
+      alert("必须为数字");
+      return false;
+    }
+    if(money > parseInt($("#credit").text())){
+      alert("输入金额大于账户余额,请重新输入");
+      return false;
+    }
+    var data = {
+        "account":account,
+        "money":money,
+        "business_password":business_password
+    };
+    $.ajax({
+        type: "post",
+        data:data,
+        dataType:"json",
+        url: "/credits/commission_to_credit",
+        success: function(data, textStatus){
+          if(data.data != "1"){
+            alert(data.data);
+          }else{
+            window.location.href="/credits";
+          }
+        },
+        complete: function(XMLHttpRequest, textStatus){
+            //HideLoading();
+            //alert("complete"+textStatus);
+        },
+        error: function(){
+            //请求出错处理
+        }
+    });
+    return false;
+  });
