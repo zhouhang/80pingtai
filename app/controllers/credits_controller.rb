@@ -16,16 +16,21 @@ class CreditsController < ApplicationController
     if money <= 0
       status = '输入的金额必须大于0'
     end
-    if money > current_user.credit
+    if money > current_user.commission
       status = '输入的金额大于用户余额,请重新输入'
     end
     if User.where("business_password = ? and id = ?", business_password, current_user.id).empty?
       status = '交易比较不正确,请重新输入'
     end
-    user = User.find(current_user.id)
-    user.decrement!(:credit, money)
-    user.increment!(:commission, money)
-    status = 1
+    if status.nil?
+      user = User.find(current_user.id)
+      user.increment!(:credit, money)
+      user.decrement!(:commission, money)
+      status = 1
+      fundslog = Fundslog.new(:desc=>'佣金转余额',:money=>money,:cur_money=>current_user.credit,:cur_commission=>current_user.commission,:staff_id=>current_user.id,:user_id=>current_user.id,:transaction_id=>0)
+      fundslog.save
+    end
+
     respond_with do |format|
       format.json { render :json => {'data' => status} }
     end
