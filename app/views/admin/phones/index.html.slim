@@ -1,0 +1,27 @@
+-set_title '订单查询'
+form class="form-inline"
+    span 缴费时间:
+    input type="text" name="phone[created_at]" id="phone_created_at" class="datepicker"
+    button class="btn" type="commit" 搜索
+
+table class="table table-hover"
+  thead
+    tr
+      th 订单号
+      th 号码
+      th 金额
+      th 充值时间
+      th 充值工号
+      th 充值用户
+      th 状态
+  tbody
+  - @phones.each do |c|
+    tr
+      td= c.number
+      td= c.obj
+      td= c.total
+      td= c.created_at
+      td= c.workid.name
+      td= c.user.login
+      td= c.status_display
+= paginate @phones
