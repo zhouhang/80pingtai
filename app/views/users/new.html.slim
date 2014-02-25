@@ -37,6 +37,6 @@
         =p.input :province, as: :region, collection: Province.select('id, name'), sub_region: :city
         =p.input :city, as: :region
         /=js_for_region_ajax
-      =f.input  :staff_id, label:'推荐码',reuqired:true
+      =f.input  :staff_id, label:'归属业务员',reuqired:true
 
       =f.button :submit, t('layouts.header.signup')

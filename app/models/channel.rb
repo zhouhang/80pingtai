@@ -6,6 +6,8 @@ class Channel < ActiveRecord::Base
   has_many :channelgroupships
   has_many :channelgroups, :through => :channelgroupships
 
+  before_save :set_default_status
+
 
   def self.get_prices
     @prices = Price.select(:name, :id).to_a
@@ -46,6 +48,12 @@ class Channel < ActiveRecord::Base
 
   def denominations
     denomination.blank? ? '10,20,30,50,100,200,300,500,任意充': denomination
+  end
+
+  def set_default_status
+    if self.status.blank?
+      self.status = 1
+    end
   end
 
 end

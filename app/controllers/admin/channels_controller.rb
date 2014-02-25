@@ -99,7 +99,7 @@ class Admin::ChannelsController < Admin::ApplicationController
 
   private
   def channel_params
-    params.require(:channel).permit(:name, :price_id, :webapi_id, :denomination, :operator_id, :business, :remark, :area)
+    params.require(:channel).permit(:name, :price_id, :webapi_id, :denomination, :operator_id, :business, :remark, :area, :status)
   end
 
 end

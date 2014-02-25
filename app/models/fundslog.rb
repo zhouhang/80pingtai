@@ -7,8 +7,8 @@ class Fundslog < ActiveRecord::Base
     self.create do |fund|
       fund.desc = tran.remark
       fund.money = tran.total
-      fund.cur_money = tran.user.credit
-      fund.cur_commission = tran.user.commission
+      fund.cur_money = current_user.credit
+      fund.cur_commission = current_user.commission
       fund.staff = tran.user.staff
       fund.user = tran.user
       fund.transaction = tran

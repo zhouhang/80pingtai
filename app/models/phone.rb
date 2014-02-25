@@ -13,7 +13,7 @@ class Phone < Transaction
       self.status = 'completed'
       self.save!
       #capitalize
-      Object.const_get(channel.webapi.pinyin.camelize).new().tel_recharge({number:number,obj:obj,total:total.to_i,denomination:channel.denominations})
+      #Object.const_get(channel.webapi.pinyin.camelize).new().tel_recharge({number:number,obj:obj,total:total.to_i,denomination:channel.denominations})
     end
 
   end
