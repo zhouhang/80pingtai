@@ -23,7 +23,6 @@ class PhonesController < ApplicationController
       @phone.errors.add(:business_password, '账户余额不足')
       render action: "new" and return
     end
-
     @phone.user= current_user
     @phone.channel= Channel.find params[:phone][:channel_id]
     if @phone.recharge

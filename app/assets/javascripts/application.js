@@ -103,7 +103,8 @@ $(function(){
                             small.append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
                         }
                     }
-                    $('#money_button .controls').append(small).append(large);
+                    $('#money_button .controls').append(small).append(large());
+                    $('#money_button .controls').append($('<input type="hidden" name="phone[channel_id]">').val(data.channel.id));
                     if(data.channel.business=='1'){
                         $('#remark_div').removeClass('hide');
                         $('#phone_remark').val(data.channel.remark);
