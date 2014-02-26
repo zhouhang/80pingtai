@@ -23,11 +23,6 @@
 
 
 $(function(){
-    $('.datepicker').datepicker({
-        format:     'yyyy-mm-dd',
-        autoclose:  true,
-        language:   'zh-CN'
-    });
 
     $('body').on('change', '.region_select', function(event) {
         var self, $targetDom;
@@ -54,6 +49,12 @@ $(function(){
     });
 
     $(document).on('ready page:load', function () {
+        
+        $('.datepicker').datepicker({
+            format:     'yyyy-mm-dd',
+            autoclose:  true,
+            language:   'zh-CN'
+        });
 
         $('#money_button .controls').on('click','a',function(e){
             if($.isNumeric($(e.target).text())) {
