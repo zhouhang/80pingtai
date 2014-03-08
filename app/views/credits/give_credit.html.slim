@@ -12,6 +12,12 @@
     <div class="controls" id="commission">#{current_user.commission}
     </div>
     </div>
+    <div class="control-group float optional" id="account_label">
+    <label class="float optional control-label" for="account">转款账号：</label>
+    <div class="controls">
+        <input class="string optional" id="account" name="account" type="text" value="">
+    </div>
+    </div>
     <div class="control-group float optional" id="money_title">
     <label class="float optional control-label" for="money">转款金额：</label>
     <div class="controls">
@@ -28,8 +34,13 @@
 
 javascript:
   $("#submit").click(function(){
+    var account = $("#account").val();
     var money = parseInt($("#money").val());
     var business_password = $("#business_password").val();
+    if(account == ""){
+      alert("请填写转账账号");
+      return false;
+    }
     if(money == ""){
       alert("请填写转款金额");
       return false;
@@ -46,11 +57,12 @@ javascript:
       alert("必须为数字");
       return false;
     }
-    if(money > parseInt($("#commission").text())){
-      alert("输入转款金额大于佣金余额,请重新输入");
+    if(money > parseInt($("#credit").text())){
+      alert("输入转款金额大于余额,请重新输入");
       return false;
     }
     var data = {
+        "account":account,
         "money":money,
         "business_password":business_password
     };
@@ -58,7 +70,7 @@ javascript:
         type: "post",
         data:data,
         dataType:"json",
-        url: "/credits/commission_to_credit",
+        url: "/credits/give_credit_to_other",
         success: function(data, textStatus){
           if(data.data != "1"){
             alert(data.data);

@@ -15,7 +15,7 @@ class Phone < Transaction
       self.user.grant_commission self.fee
 
       #capitalize
-      Object.const_get(channel.webapi.pinyin.camelize).new().tel_recharge({number:number,obj:obj,total:total.to_i,denomination:channel.denominations})
+      #Object.const_get(channel.webapi.pinyin.camelize).new().tel_recharge({number:number,obj:obj,total:total.to_i,denomination:channel.denominations})
     end
 
   end

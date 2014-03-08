@@ -36,6 +36,8 @@ Pingtai::Application.routes.draw do
   end
 
   match 'credits/commission_to_credit', to: 'credits#commission_to_credit', :via =>[:post]
+  match 'credits/give_credit_to_other', to: 'credits#give_credit_to_other', :via =>[:get, :post]
+  match 'credits/give_credit', to: 'credits#give_credit', :via =>[:get, :post]
   resources :users, :phones, :fundslogs, :credits
   scope 'notify', :as => 'notify' do
     get 'qianxing', to: 'notify#qianxing'

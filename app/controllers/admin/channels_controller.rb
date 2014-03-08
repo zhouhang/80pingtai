@@ -49,6 +49,7 @@ class Admin::ChannelsController < Admin::ApplicationController
   def destroy
     @channel = Channel.find params[:id]
     @channel.destroy
+    Channelgroupship.delete_all(["channel_id = ?", params[:id]])
     respond_with do |format|
       format.html { redirect_to action:'index' }
       format.js { render :nothing => true, :status => 200, :content_type => 'text/html' }
