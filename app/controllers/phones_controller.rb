@@ -7,6 +7,7 @@ class PhonesController < ApplicationController
   end
 
   def new
+    @announcement = Announcement.last
     @phone = Phone.new
   end
 

@@ -20,6 +20,7 @@ zh-CN:
       channelgroup: "通道分组"
       workid: "工号"
       commission_to_credit: "佣金转余额"
+      announcement: "公告"
 
   activerecord:
     models:

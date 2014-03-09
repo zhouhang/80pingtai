@@ -1,0 +1,6 @@
+.centered
+  -set_title t'layouts.header.announcement'
+  = simple_form_for @announcement, url:"/admin/announcements", :html=>{:method=>:post} do |f|
+      =f.text_area :content,label:'公告内容',reuqired:true
+      br
+      =f.button :submit, t('layouts.header.submit')

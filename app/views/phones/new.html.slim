@@ -1,5 +1,7 @@
 .centered
   -set_title '话费缴费'
+  div
+    marquee style='width: 100%; height: 30px;color:red' onmouseout="start();" onmouseover="stop();" scrollamount='2' direction='left'#{@announcement.content}
   = simple_form_for @phone do |f|
     = f.input :obj
     <div class="control-group float optional hide" id="phone_info">
