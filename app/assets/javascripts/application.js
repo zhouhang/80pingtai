@@ -24,31 +24,48 @@
 
 $(function(){
 
-    $('body').on('change', '.region_select', function(event) {
-        var self, $targetDom;
-        self = $(event.currentTarget);
-        if(!self.data('region-target-kalss')) return
-        $id = self.attr('id');
-        $targetDom = $('#' + $id.substring(0,$id.lastIndexOf('_')+1)+self.data('region-target-kalss'));
-        if ($targetDom.size() <= 0) {
-            $targetDom = $('#' + $id.replace("province",self.data('region-target-kalss')));
-        }
 
-        if ($targetDom.size() > 0) {
-            $.getJSON('/china_region_fu/fetch_options', {klass: self.data('region-target-kalss'), parent_klass: self.data('region-klass'), parent_id: self.val()}, function(data) {
-                var options = [];
-                $('option[value!=""]', $targetDom).remove();
-                $.each(data, function(index, value) {
-                    options.push("<option value='" + value.id + "'>" + value.name + "</option>");
-                });
-                $targetDom.append(options.join(''));
-            });
-        } else {
-
-        }
-    });
 
     $(document).on('ready page:load', function () {
+        $('.region_select').on('change' , function(event) {
+            var self, $targetDom;
+            self = $(event.currentTarget);
+            if(!self.data('region-target-kalss')) return
+            $id = self.attr('id');
+            $targetDom = $('#' + $id.substring(0,$id.lastIndexOf('_')+1)+self.data('region-target-kalss'));
+            if ($targetDom.size() <= 0) {
+                $targetDom = $('#' + $id.replace("province",self.data('region-target-kalss')));
+            }
+
+            if ($targetDom.size() > 0) {
+                $.getJSON('/china_region_fu/fetch_options', {klass: self.data('region-target-kalss'), parent_klass: self.data('region-klass'), parent_id: self.val()}, function(data) {
+                    var options = [];
+                    $('option[value!=""]', $targetDom).remove();
+                    $.each(data, function(index, value) {
+                        options.push("<option value='" + value.id + "'>" + value.name + "</option>");
+                    });
+                    $targetDom.append(options.join(''));
+                });
+            } else {
+
+            }
+        });
+
+        $('#set_member').on('click',function(e){
+            ids = $('input[name="id"]:checked').map(function(){return $(this).val();}).get().join(",");
+            $.post( "/admin/users/member", {  "ids": ids, "role": "member"}).success(function(e){
+                alert('操作成功');
+                Turbolinks.visit(location.href);
+
+            });
+        });
+        $('#cancel_member').on('click',function(e){
+            ids = $('input[name="id"]:checked').map(function(){return $(this).val();}).get().join(",");
+            $.post( "/admin/users/member", {  "ids": ids, "role": "user"}).success(function(e){
+                alert('操作成功');
+                Turbolinks.visit(location.href);
+            });
+        });
         
         $('.datepicker').datepicker({
             format:     'yyyy-mm-dd',

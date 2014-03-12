@@ -8,8 +8,13 @@
 require 'csv'
 
 staff =Staff.create!(login:'admin',name:'管理员',password:'111111',password_confirmation:'111111')
-a = User.create({login:'test',name:'测试1',password:'111111',password_confirmation:'111111',credit:1000})
+a = User.create({login:'test',name:'测试1',password:'111111',password_confirmation:'111111',credit:1000,role:'user'})
 a.company = a.build_company(:name=>'时代通讯', :manager=>'张三', :cell_phone=>'13800138000',:telphone=>'0271111111', :address=>'汉阳区钟家村')
+a.staff = staff
+a.staff_id = staff.id
+a.save
+a = User.create({login:'test1',name:'测试2',password:'111111',password_confirmation:'111111',credit:0,role:'user'})
+a.company = a.build_company(:name=>'世纪通讯', :manager=>'李四', :cell_phone=>'10086',:telphone=>'027222222', :address=>'汉口江汉路')
 a.staff = staff
 a.staff_id = staff.id
 a.save

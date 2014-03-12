@@ -11,6 +11,9 @@ class Phone < Transaction
       self.price = channel.price
       self.workid = channel.workid
       self.status = 'completed'
+      location = Location.find_by_number(number.slice(0,7))
+      self.location =  City.find_by_name(location.city.split('省').last).id
+      self.webapi = channel.webapi
       self.save!
       self.user.grant_commission self.fee
 

@@ -52,6 +52,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  def role_human
+    a = [{code: 'user',name: '非会员'},{code: 'member', name: '会员'}].select do |c|
+    c[:code] == self.role
+    end
+    a.first[:name]
+  end
+
   def grant_fee total
     self.increment(:credit,total)
     self.save!

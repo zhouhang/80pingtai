@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 20140309082851) do
     t.string   "business_password_digest"
     t.float    "credit",                   default: 0.0
     t.float    "commission",               default: 0.0
-    t.string   "role"
+    t.string   "role",                     default: "user"
     t.integer  "company_id"
     t.integer  "staff_id"
     t.datetime "created_at"

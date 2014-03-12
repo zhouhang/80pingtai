@@ -1,7 +1,12 @@
 Pingtai::Application.routes.draw do
 
   namespace :admin do
-    resources :users,:phones,:announcements
+    resources :phones,:announcements
+    resources :users do
+      collection do
+        match :member,:via => [:get,:post]
+      end
+    end
     match 'channels/query',  to: 'channels#getByCondition',:via => [:get]
     match 'channels/get_provinces_cites',  to: 'channels#get_provinces_cities',:via => [:get, :post]
     resources :channels do
