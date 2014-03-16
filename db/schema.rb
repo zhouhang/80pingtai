@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309082851) do
+ActiveRecord::Schema.define(version: 20140316130814) do
 
   create_table "announcements", force: true do |t|
     t.text     "content"
@@ -114,6 +114,13 @@ ActiveRecord::Schema.define(version: 20140309082851) do
     t.datetime "updated_at"
   end
 
+  create_table "menus", force: true do |t|
+    t.string   "name"
+    t.string   "path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "prices", force: true do |t|
     t.string   "name"
     t.float    "price"
@@ -136,11 +143,20 @@ ActiveRecord::Schema.define(version: 20140309082851) do
   add_index "provinces", ["pinyin"], name: "index_provinces_on_pinyin", using: :btree
   add_index "provinces", ["pinyin_abbr"], name: "index_provinces_on_pinyin_abbr", using: :btree
 
+  create_table "staffmenuships", force: true do |t|
+    t.integer  "staff_id"
+    t.integer  "menu_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "staffs", force: true do |t|
     t.string   "login"
     t.string   "name"
+    t.string   "phone"
     t.string   "password"
     t.string   "password_digest"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -153,12 +169,14 @@ ActiveRecord::Schema.define(version: 20140309082851) do
     t.float    "fee"
     t.float    "total"
     t.string   "status"
+    t.string   "location"
     t.string   "number"
     t.string   "remark"
     t.integer  "user_id"
     t.integer  "price_id"
     t.integer  "channel_id"
     t.integer  "workid_id"
+    t.integer  "webapi_id"
     t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"

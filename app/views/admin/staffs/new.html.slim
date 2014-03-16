@@ -1,0 +1,15 @@
+.centered
+  -set_title t'layouts.header.staff'
+  = simple_form_for @staff, url:"/admin/staffs", :html=>{:method=>:post} do |f|
+      =f.input :login,label:'账户',reuqired:true
+      =f.input :name,label:'真实姓名',reuqired:true
+      =f.input :phone,label:'联系电话',reuqired:true
+
+      <div class="control-group check_boxes optional workid_business"><label class="check_boxes optional control-label">功能权限</label>
+      <div class="controls">
+      -@menus.each do |m|
+        <label class="checkbox"><input class="check_boxes optional" id="workid_business_#{m.id}" name="menu[]" type="checkbox" value="#{m.id}">#{m.name}</label>
+      </div>
+      </div>
+
+      =f.button :submit, t('layouts.header.submit')

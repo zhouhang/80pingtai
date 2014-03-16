@@ -21,6 +21,7 @@ zh-CN:
       workid: "工号"
       commission_to_credit: "佣金转余额"
       announcement: "公告"
+      staff: "业务员"
 
   activerecord:
     models:
@@ -85,3 +86,4 @@ zh-CN:
       wrong_old_business_password: "错误的交易密码"
       new_business_password_not_equal_confirm: "两次输入的交易密码不一致"
       change_business_password_fail: "修改交易密码失败，请稍后再试"
+      is_exist: "用户名已存在"

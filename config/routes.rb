@@ -28,6 +28,11 @@ Pingtai::Application.routes.draw do
         post :update_status
       end
     end
+    resources :staffs do
+      member do
+        post :update_status
+      end
+    end
     resources :sessions, only: [:new, :create, :destroy]
     resources :charges do
       member do
