@@ -35,5 +35,8 @@ class Transaction < ActiveRecord::Base
     Fundslog.create_for_transaction self if self.status == 'completed'
   end
 
+  def type_display
+    '无'
+  end
 
 end

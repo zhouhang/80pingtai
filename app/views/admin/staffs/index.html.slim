@@ -1,0 +1,26 @@
+.centered
+  -set_title '业务员管理'
+  button class="btn" style="margin-left:20px" onclick="window.location.href='#{new_admin_staff_path}'" 新增
+  br
+  table class="table table-hover"
+    thead
+      tr
+        th 序号
+        th 账号
+        th 真实姓名
+        th 联系电话
+        th 启/禁
+        th 操作
+    tbody
+    - @staffs.each do |s|
+      tr
+        td= s.id
+        td= s.login
+        td= s.name
+        td= s.phone
+        -if s.status == 0
+          td: a href="#{update_status_admin_staff_path s}" data-remote="true" data-method="post" data-disable-with="操作中..." 关闭
+        -else
+          td: a href="#{update_status_admin_staff_path s}" data-remote="true" data-method="post" data-disable-with="操作中..." 开启
+        td: a href="#{edit_admin_staff_path s}" 编辑
+  = paginate @staffs

@@ -1,6 +1,5 @@
 class Charge < Transaction
 
-  belongs_to :user
   belongs_to :staff
   #validates :pay_method,presence: true,
   #:inclusion => {in: %w(abc icbc ccb tenpay),:message => I18n.t('errors.messages.pay_method_invalid')}
@@ -52,4 +51,8 @@ class Charge < Transaction
     a[:account] if a.present?
   end
 
-end
+  def type_display
+    '预存款'
+  end
+
+  end

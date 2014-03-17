@@ -1,0 +1,22 @@
+.centered
+  -set_title '编辑代理商'
+  = simple_nested_form_for  @user,:url => admin_user_path do |f|
+    h4 账号信息
+    hr
+    =f.input :login
+    =f.input :name
+
+    h4 单位信息
+    hr
+    = f.simple_fields_for :company,@user.company_for_form do |p|
+      =p.input :name
+      =p.input :manager
+      =p.input :cell_phone
+      =p.input :telphone
+      =p.input :address
+      =p.input :province, as: :region, collection: Province.select('id, name'), sub_region: :city
+      =p.input :city, as: :region
+      /=js_for_region_ajax
+    =f.input  :staff_id, label:'归属业务员',reuqired:true
+
+    =f.button :submit,'保存'

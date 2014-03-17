@@ -16,98 +16,124 @@
 //= require jquery_ujs
 //= require jquery.tree.js
 //= require bootstrap
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
 //= require_tree .
 
 
 
 $(function(){
-    $('body').on('change', '.region_select', function(event) {
-        var self, $targetDom;
-        self = $(event.currentTarget);
-        if(!self.data('region-target-kalss')) return
-        $id = self.attr('id');
-        $targetDom = $('#' + $id.substring(0,$id.lastIndexOf('_')+1)+self.data('region-target-kalss'));
-        if ($targetDom.size() <= 0) {
-            $targetDom = $('#' + $id.replace("province",self.data('region-target-kalss')));
-        }
 
-        if ($targetDom.size() > 0) {
-            $.getJSON('/china_region_fu/fetch_options', {klass: self.data('region-target-kalss'), parent_klass: self.data('region-klass'), parent_id: self.val()}, function(data) {
-                var options = [];
-                $('option[value!=""]', $targetDom).remove();
-                $.each(data, function(index, value) {
-                    options.push("<option value='" + value.id + "'>" + value.name + "</option>");
+
+
+    $(document).on('ready page:load', function () {
+        $('.region_select').on('change' , function(event) {
+            var self, $targetDom;
+            self = $(event.currentTarget);
+            if(!self.data('region-target-kalss')) return
+            $id = self.attr('id');
+            $targetDom = $('#' + $id.substring(0,$id.lastIndexOf('_')+1)+self.data('region-target-kalss'));
+            if ($targetDom.size() <= 0) {
+                $targetDom = $('#' + $id.replace("province",self.data('region-target-kalss')));
+            }
+
+            if ($targetDom.size() > 0) {
+                $.getJSON('/china_region_fu/fetch_options', {klass: self.data('region-target-kalss'), parent_klass: self.data('region-klass'), parent_id: self.val()}, function(data) {
+                    var options = [];
+                    $('option[value!=""]', $targetDom).remove();
+                    $.each(data, function(index, value) {
+                        options.push("<option value='" + value.id + "'>" + value.name + "</option>");
+                    });
+                    $targetDom.append(options.join(''));
                 });
-                $targetDom.append(options.join(''));
+            } else {
+
+            }
+        });
+
+        $('#set_member').on('click',function(e){
+            ids = $('input[name="id"]:checked').map(function(){return $(this).val();}).get().join(",");
+            $.post( "/admin/users/member", {  "ids": ids, "role": "member"}).success(function(e){
+                alert('操作成功');
+                Turbolinks.visit(location.href);
+
             });
-        } else {
+        });
+        $('#cancel_member').on('click',function(e){
+            ids = $('input[name="id"]:checked').map(function(){return $(this).val();}).get().join(",");
+            $.post( "/admin/users/member", {  "ids": ids, "role": "user"}).success(function(e){
+                alert('操作成功');
+                Turbolinks.visit(location.href);
+            });
+        });
+        
+        $('.datepicker').datepicker({
+            format:     'yyyy-mm-dd',
+            autoclose:  true,
+            language:   'zh-CN'
+        });
 
-        }
-    });
-
-  $(document).on('ready page:load', function () {
-
-    $('#money_button .controls').on('click','a',function(e){
-        if($.isNumeric($(e.target).text())) {
-            $('#phone_total').val($(e.target).text());
-        }
-        else{
-            $('#phone_total').attr('readonly',false).val('').focus();
-        }
-    })
-
-    if($('#phone_obj').size()>0){
-        var query_button = $('<a class="btn">').text('查询');
-        $('#phone_obj').parent().append(query_button);
-        query_button.on('click',function(e){
-        $('#phone_info').addClass('hide');
-        $('#phone_info .controls').empty();
-            $.get( "/locations/query?number="+$('#phone_obj').val(), function( data ) {
-                if(typeof data != 'string'){
-                    $('#phone_info .controls').empty();
-                    $('#phone_info .controls').append($('<span>').addClass('alert alert-success').text("姓名:"+data.name))
-                    $('#phone_info .controls').append($('<span>').addClass('alert alert-success').text("余额:"+data.balance))
-                    $('#phone_info').removeClass('hide')
-                }
-            });    
+        $('#money_button .controls').on('click','a',function(e){
+            if($.isNumeric($(e.target).text())) {
+                $('#phone_total').val($(e.target).text());
+            }
+            else{
+                $('#phone_total').attr('readonly',false).val('').focus();
+            }
         })
-    }
 
-    $('#phone_obj').on('change',function(e){
-        $('#money_button').addClass('hide');
-        $('#remark_div').addClass('hide');
-        $('#phone_location').val('');
-        $('#phone_total').attr('readonly',true).val('');
-        $('#phone_remark').val('');
-      $.get( "/locations/search?number="+e.target.value, function( data ) {
-        if(typeof data != 'string'){
-            $('#phone_location').val(data.location.city+' '+ data.location.isp);
-            $('#money_button').removeClass('hide')
-            denominations = data.channel.denomination.split(',');
-            $('#money_button .controls').empty();
-            var small  = $('<span class="well">');//.append('小面值:')
-            var large = $('<span class="well">');//.append('大面值:')
-            for (d in denominations){
-                if(parseInt(denominations[d])>100){
-                    large.append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
-                }
-                else{
-                    small.append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
-                }
-            }
-            $('#money_button .controls').append(small).append(large);
-
-            $('#money_button .controls').append($('<input type="hidden" name="phone[channel_id]">').val(data.channel.id));
-            if(data.channel.business=='1'){
-                $('#remark_div').removeClass('hide');
-            }
-            // $('#money_button .controls')
+        if($('#phone_obj').size()>0){
+            var query_button = $('<a class="btn">').text('查询');
+            $('#phone_obj').parent().append(query_button);
+            query_button.on('click',function(e){
+                $('#phone_info').addClass('hide');
+                $('#phone_info .controls').empty();
+                $.get( "/locations/query?number="+$('#phone_obj').val(), function( data ) {
+                    if(typeof data != 'string'){
+                        $('#phone_info .controls').empty();
+                        $('#phone_info .controls').append($('<span>').addClass('alert alert-success').text("姓名:"+data.name))
+                        $('#phone_info .controls').append($('<span>').addClass('alert alert-success').text("余额:"+data.balance))
+                        $('#phone_info').removeClass('hide')
+                    }
+                });
+            })
         }
-      });
+
+        $('#phone_obj').on('change',function(e){
+            $('#money_button').addClass('hide');
+            $('#remark_div').addClass('hide');
+            $('#phone_location').val('');
+            $('#phone_total').attr('readonly',true).val('');
+            $('#phone_remark').val('');
+            $.get( "/locations/search?number="+e.target.value, function( data ) {
+                if(typeof data != 'string'){
+                    $('#phone_location').val(data.location.city+' '+ data.location.isp);
+                    $('#money_button').removeClass('hide')
+                    denominations = data.channel.denomination.split(',');
+                    $('#money_button .controls').empty();
+                    var small  = $('<span class="well">');//.append('小面值:')
+                    var large = $('<span class="well">');//.append('大面值:')
+                    for (d in denominations){
+                        if(parseInt(denominations[d])>100){
+                            large.append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
+                        }
+                        else{
+                            small.append($('<a class="btn">').val(denominations[d]).text(denominations[d]));
+                        }
+                    }
+                    $('#money_button .controls').append(small).append(large);
+                    $('#money_button .controls').append($('<input type="hidden" name="phone[channel_id]">').val(data.channel.id));
+                    if(data.channel.business=='1'){
+                        $('#remark_div').removeClass('hide');
+                        $('#phone_remark').val(data.channel.remark);
+                    }
+                    // $('#money_button .controls')
+                }
+            });
+        });
     });
-  });
 
 });
 /*
-document.addEventListener("page:load", selector_onload);
-*/
+ document.addEventListener("page:load", selector_onload);
+ */

@@ -9,7 +9,7 @@ class User < ActiveRecord::Migration
       t.string :business_password_digest
       t.float  :credit                    ,:default => 0.0
       t.float  :commission                ,:default => 0.0
-      t.string :role
+      t.string :role                      ,:default => 'user'
       # t.string :memebership
       t.references :company
       t.references :staff

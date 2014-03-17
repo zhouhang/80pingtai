@@ -5,16 +5,18 @@
       tr
         th 序号
         th 日期
+        th 业务
         th 操作员
         th 描述
         th 金额
         th 当前金额
         th 当前佣金
     tbody
-    - @fundslogs.each do |f|
+    - @fundslogs.each_with_index  do |f,idx|
       tr
-        td= f.id
+        td= idx+1
         td= f.created_at
+        td= f.transaction.type_display
         td= f.staff.login
         td= f.desc
         td= f.money

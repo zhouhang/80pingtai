@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Sample::Application.config.secret_key_base = '56ca86d61896973933599f91aaa9407eebc85060e2de1476fe5c1699abcc16280b36217db018b1c26653e7c87c3cbd8ceff199b5821663cf389994c1e0e0411b'
+Pingtai::Application.config.secret_key_base = '56ca86d61896973933599f91aaa9407eebc85060e2de1476fe5c1699abcc16280b36217db018b1c26653e7c87c3cbd8ceff199b5821663cf389994c1e0e0411b'

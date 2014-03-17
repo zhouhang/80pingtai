@@ -45,6 +45,18 @@ class User < ActiveRecord::Base
   def grant_commission total
     self.increment(:commission,total)
     self.save!
+    Commission.create do |c|
+      c.total = total
+      c.user = self
+      c.status = 'completed'
+    end
+  end
+
+  def role_human
+    a = [{code: 'user',name: '非会员'},{code: 'member', name: '会员'}].select do |c|
+    c[:code] == self.role
+    end
+    a.first[:name]
   end
 
   def grant_fee total
@@ -52,9 +64,8 @@ class User < ActiveRecord::Base
     self.save!
   end
 
-  def use total,fee
+  def use total
     self.increment(:credit,-total)
-    self.increment(:commission,fee)
     self.save!
   end
 

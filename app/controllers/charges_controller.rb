@@ -53,7 +53,7 @@ class ChargesController < ApplicationController
 
   def get_charge(charge_total, time)
     if time <= 3
-      num = rand(99) * 0.1
+      num = rand(99)
       total = num + Integer(charge_total)
       charge = Charge.where(:total => total)
       if charge.size == 0

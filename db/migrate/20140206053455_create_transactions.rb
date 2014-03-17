@@ -1,7 +1,7 @@
 class CreateTransactions < ActiveRecord::Migration
   def change
     create_table :transactions do |t|
-      t.string 	:type
+      t.string  :type
 
       t.string   :pay_method
       t.string   :feedback
@@ -10,6 +10,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.float   :fee
       t.float   :total
       t.string  :status
+      t.string  :location
       t.string  :number
       t.string  :remark
       
@@ -17,6 +18,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.references :price
       t.references :channel
       t.references :workid
+      t.references :webapi
       t.references :staff
       t.timestamps
     end

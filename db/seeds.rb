@@ -7,9 +7,14 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'csv'
 
-staff =Staff.create!(login:'admin',name:'管理员',password:'111111',password_confirmation:'111111')
-a = User.create({login:'test',name:'测试1',password:'111111',password_confirmation:'111111',credit:1000})
+staff =Staff.create!(login:'admin',name:'管理员',phone:'13006159174',password:'111111',password_confirmation:'111111',status:1)
+a = User.create({login:'test',name:'测试1',password:'111111',password_confirmation:'111111',credit:1000,role:'user'})
 a.company = a.build_company(:name=>'时代通讯', :manager=>'张三', :cell_phone=>'13800138000',:telphone=>'0271111111', :address=>'汉阳区钟家村')
+a.staff = staff
+a.staff_id = staff.id
+a.save
+a = User.create({login:'test1',name:'测试2',password:'111111',password_confirmation:'111111',credit:0,role:'user'})
+a.company = a.build_company(:name=>'世纪通讯', :manager=>'李四', :cell_phone=>'10086',:telphone=>'027222222', :address=>'汉口江汉路')
 a.staff = staff
 a.staff_id = staff.id
 a.save
@@ -38,8 +43,25 @@ Channelgroupship.create!(channel_id:2,order:1,channelgroup_id:2)
 Location.create(:number => '1860715',:city => '湖北省武汉市',:isp =>'联通',:zip_code => '027')
 Location.create(:number => '1500278',:city => '湖北省武汉市',:isp =>'移动',:zip_code => '027')
 
-Fundslog.create( :user_id => 1, :staff_id => 1, :desc => 'desc', :money => 10.0, :cur_money => 20.0, :cur_commission => 5.0 )
-
+Menu.create!(:name => '代理商资料', :path => '/users')
+Menu.create!(:name => '通道设置', :path => '/channels')
+Menu.create!(:name => '通道分组设置', :path => '/channelgroups')
+Menu.create!(:name => '工号设置', :path => '/workids')
+Menu.create!(:name => '游戏通道设置', :path => '#')
+Menu.create!(:name => '代理商充值价格管理', :path => '/prices')
+Menu.create!(:name => '游戏充值进价管理', :path => '#')
+Menu.create!(:name => '订单页面查询', :path => '/phones')
+Menu.create!(:name => '游戏订单查询', :path => '#')
+Menu.create!(:name => '存款请求处理', :path => '/charges')
+Menu.create!(:name => '代理商资金动向', :path => '#')
+Menu.create!(:name => '代理商加/扣款', :path => '#')
+Menu.create!(:name => '通道充值成功失败笔数统计', :path => '#')
+Menu.create!(:name => '代理商充值统计', :path => '#')
+Menu.create!(:name => '充值工号充值统计', :path => '#')
+Menu.create!(:name => '代理商年充值总额,运营商每年充值总额', :path => '#')
+Menu.create!(:name => '用户每月增减量', :path => '#')
+Menu.create!(:name => '公告管理', :path => '/announcements')
+Menu.create!(:name => '业务员管理', :path => '/staffs')
 
 =begin
 csv_text = File.read("#{Rails.root}/db/locations.csv")

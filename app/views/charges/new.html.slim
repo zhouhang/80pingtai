@@ -2,14 +2,14 @@
   -set_title '充值'
   = simple_form_for @charge do |f|
       = f.input :total,required: true
-      = f.input :pay_method, collection:Charge.pay_method_selector,  selected: :first
+      = f.input :pay_method, collection:Charge.pay_method_selector,  as: :radio_buttons
       = f.input :remark, as: :text,placeholder:'*请填入存款地址,流水号,存款时间等详细信息'
       = f.button :wrapped, '充值', id:'submitCharge'
 
 javascript:
   $("#submitCharge").click(function(){
     var total = parseInt($("#charge_total").val());
-    var pay_method = $("#charge_pay_method").val();
+    var pay_method = $("input[name='charge[pay_method]']:checked").val();
     var remark = $("#charge_remark").val();
     if(isNaN(total)){
       alert("必须为数字");
