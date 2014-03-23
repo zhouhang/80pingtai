@@ -1,7 +1,8 @@
 Pingtai::Application.routes.draw do
 
   namespace :admin do
-    resources :phones,:announcements
+    match 'phones/getby',  to: 'phones#getByCondition',:via => [:get]
+    resources :phones,:announcements, :transactions
     resources :users do
       collection do
         match :member,:via => [:get,:post]

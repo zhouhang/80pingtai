@@ -79,7 +79,7 @@ class ChargesController < ApplicationController
       paramsTen[:out_trade_no] = Charge.last.id
       paramsTen[:total_fee] = params[:total]
       paramsTen[:fee_type] = '1'
-      paramsTen[:key] = ''
+      paramsTen[:key] = '0b25eba592c039a6d69838087d5d8b00'
       paramsTen[:spbill_create_ip] = request.remote_ip
       paramsTen[:time_start] = Time.new.strftime("%Y%m%d%H%M%S")
       paramsTen[:time_expire] = Time.new.strftime("%Y%m%d%H%M%S")
