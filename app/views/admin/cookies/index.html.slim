@@ -1,0 +1,26 @@
+.centered
+  -set_title '参数维护'
+  table class="table table-hover"
+    thead
+      tr
+        th 平台
+        th 工号
+        th 验证码
+        th 短信验证码
+        th 操作
+    tbody
+    - @workids.each do |c|
+      tr
+        td
+          input type="hidden" name="cookie" value="#{c.ext2}"
+          input type="hidden" name="workid_id" value="#{c.id}"
+        td= c.name
+        td
+          img src="/#{c.name}.jpg"
+          input type="text" name="captcha"
+        td
+          span="#{c.ext1}"
+          input type="text" name="sms"
+        td
+          button name="login" class="btn" 提交
+          button name="send" class="btn" 发送

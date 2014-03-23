@@ -19,7 +19,7 @@ class LocationsController < ApplicationController
   def query
     location = Location.find_by_number(params[:number].slice(0,7))
     render :nothing => true, :status => 200, :content_type => 'text/html' and return  if location.blank?
-    render json: Object.const_get(location.isp_to_pinyin.camelize).new().query(params[:number])
+    render json: Object.const_get(location.isp_to_pinyin.camelize).new().query(params[:number],params[:channel_id])
   end
 
   private

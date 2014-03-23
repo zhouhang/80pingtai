@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140316130814) do
+ActiveRecord::Schema.define(version: 20140323033227) do
 
   create_table "announcements", force: true do |t|
     t.text     "content"
@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(version: 20140316130814) do
     t.string   "address"
     t.string   "province"
     t.string   "city"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cookies", force: true do |t|
+    t.string   "site"
+    t.string   "cookie"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

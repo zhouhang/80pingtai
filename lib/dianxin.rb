@@ -61,8 +61,8 @@ class Dianxin
     result
   end
 
-  def query(number)
-    login if @@cookie.blank?
+  def query(number,workid)
+    login(workid) if @@cookie.blank?
     uri = URI(QUERY_URL.gsub('phone_number',number))
     req = Net::HTTP::Get.new(uri,{'Cookie' => @@cookie})
     res = @https.request(req)
@@ -76,10 +76,10 @@ class Dianxin
     { name:spans.first.text,balance:spans.last.text }
   end
 
-  def login
+  def login(workid)
     @@cookie = nil
     uri = URI(LOGIN_URL)
-    uri.query = URI.encode_www_form(Rails.configuration.evc_login_params)
+    uri.query = URI.encode_www_form( {passWord:workid.password,userName:workid.name, loginModel:'0',language:'zh',x:'30',y:'11'})
     req = Net::HTTP::Post.new(uri.request_uri)
     res = @https.request(req)
     result = res.body.force_encoding("gb2312").encode!('utf-8')

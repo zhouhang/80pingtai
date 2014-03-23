@@ -56,7 +56,6 @@ $(function(){
             $.post( "/admin/users/member", {  "ids": ids, "role": "member"}).success(function(e){
                 alert('操作成功');
                 Turbolinks.visit(location.href);
-
             });
         });
         $('#cancel_member').on('click',function(e){
@@ -66,7 +65,7 @@ $(function(){
                 Turbolinks.visit(location.href);
             });
         });
-        
+
         $('.datepicker').datepicker({
             format:     'yyyy-mm-dd',
             autoclose:  true,
@@ -88,7 +87,7 @@ $(function(){
             query_button.on('click',function(e){
                 $('#phone_info').addClass('hide');
                 $('#phone_info .controls').empty();
-                $.get( "/locations/query?number="+$('#phone_obj').val(), function( data ) {
+                $.get( "/locations/query?number="+$('#phone_obj').val()+"&channel_id="+$('#phone_channel_id').val(), function( data ) {
                     if(typeof data != 'string'){
                         $('#phone_info .controls').empty();
                         $('#phone_info .controls').append($('<span>').addClass('alert alert-success').text("姓名:"+data.name))
@@ -122,7 +121,7 @@ $(function(){
                         }
                     }
                     $('#money_button .controls').append(small).append(large);
-                    $('#money_button .controls').append($('<input type="hidden" name="phone[channel_id]">').val(data.channel.id));
+                    $('#money_button .controls').append($('<input type="hidden" name="phone[channel_id]" id="phone_channel_id">').val(data.channel.id));
                     if(data.channel.business=='1'){
                         $('#remark_div').removeClass('hide');
                         $('#phone_remark').val(data.channel.remark);
@@ -131,6 +130,19 @@ $(function(){
                 }
             });
         });
+
+        $('button[name="login"]').on('click',function(e){
+            _this = $(e.target);
+            $.post( "/admin/cookies/login", {
+                "workid_id": $('input[name="workid_id"]').val(),
+                "cookie": $('input[name="cookie"]').val(),
+                "captcha": $('input[name="captcha"]').val()})
+            .success(function(e){
+                console.log(e)
+            });
+        })
+
+
     });
 
 });
