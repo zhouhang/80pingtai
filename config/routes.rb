@@ -33,6 +33,10 @@ Pingtai::Application.routes.draw do
         post :update_status
       end
     end
+
+    resources :cookies do
+      post 'login'  =>  'cookies#login', :on => :collection
+    end
     resources :sessions, only: [:new, :create, :destroy]
     resources :charges do
       member do
